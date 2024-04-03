@@ -2,3 +2,6 @@
 **/obj/
 **/bin/
 **/.idea/
+**/Debug/
+**/packages/
+*.user
