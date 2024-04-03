@@ -1,6 +1,7 @@
 # AHeadLib.Net
-The C# version of AHeadLib solves various problems such as instability and incompatibility with x64 of previous versions.  
-C#版本的AHeadLib解决了之前版本不稳定、不兼容x64等各种问题。
+The C# version of AHeadLib, it solves various problems such as instability and incompatibility with x64 of previous versions.This version supports both x86 and x64. The generated C++ project also supports camouflage of x86 and x64 DLLs. Just select the corresponding compilation configuration.  
+    
+C#版本的AHeadLib，解决了之前版本不稳定、不兼容x64等各种问题。此版本同时支持x86和x64，生成的C++项目也同时支持对x86和x64的dll的伪装，选择对应的编译配置即可。  
 
 # Overview
 This project is based on .NET Framework 4.7.2 and DevExpress v22.1.4. If you want to use it, you can directly download the compressed package below [Release](https://github.com/bodong1987/AHeadLib.Net/releases). To compile you need to install DevExpress.  
