@@ -38,6 +38,7 @@ void __CheckedLoad()
     TCHAR szPath[MAX_PATH];
     GetSystemDirectory(szPath, MAX_PATH);
 
+    lstrcat(szPath, TEXT("\\"));
     lstrcat(szPath, TEXT("${LIBRARY_NAME}"));
 
     // if your dll is not in system path
