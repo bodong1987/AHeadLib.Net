@@ -37,7 +37,7 @@ namespace AHeadLib.Net
         /// Gets the target path.
         /// </summary>
         /// <value>The target path.</value>
-        public string? TargetPath { get; private set; }
+        public string TargetPath { get; private set; }
 
         /// <summary>
         /// The buffer

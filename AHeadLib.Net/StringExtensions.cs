@@ -77,7 +77,7 @@ namespace AHeadLib.Net
         /// <param name="value">The value.</param>
         /// <returns><c>true</c> if the specified value is valid; otherwise, <c>false</c>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNotNullOrEmpty(this string? value)
+        public static bool IsNotNullOrEmpty(this string value)
         {
             return !string.IsNullOrEmpty(value);
         }
@@ -88,7 +88,7 @@ namespace AHeadLib.Net
         /// <param name="value">The value.</param>
         /// <returns><c>true</c> if [is null or empty] [the specified value]; otherwise, <c>false</c>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullOrEmpty(this string? value)
+        public static bool IsNullOrEmpty(this string value)
         {
             return string.IsNullOrEmpty(value);
         }
@@ -100,7 +100,7 @@ namespace AHeadLib.Net
         /// <param name="value">The value.</param>
         /// <param name="other">The other.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public static bool iEquals(this string? value, string? other)
+        public static bool iEquals(this string value, string other)
         {
             if (value == null && other == null)
             {
@@ -120,7 +120,7 @@ namespace AHeadLib.Net
         /// <param name="value">The value.</param>
         /// <param name="other">The other.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public static bool iStartsWith(this string? value, string other)
+        public static bool iStartsWith(this string value, string other)
         {
             if (value == null && other == null)
             {
@@ -140,7 +140,7 @@ namespace AHeadLib.Net
         /// <param name="value">The value.</param>
         /// <param name="other">The other.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public static bool iEndsWith(this string? value, string other)
+        public static bool iEndsWith(this string value, string other)
         {
             if (value == null && other == null)
             {
