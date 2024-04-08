@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace AHeadLib.Net
 {
@@ -68,6 +69,21 @@ namespace AHeadLib.Net
                 XtraMessageBox.Show("Failed get export table.");
                 return;
             }
+
+            var names = exportNames.ToList();
+            names.RemoveAll(x =>
+            {
+                if (!SyntaxFacts.IsValidIdentifier(x) || x.Contains("@"))
+                {
+                    Log($"Skip symbol:{x}");
+
+                    return true;
+                }
+
+                return false;
+            });
+
+            exportNames = names;
 
             VSProjectGenerator generator = new VSProjectGenerator(buttonEdit_OutputDirectory.Text, Path.GetFileName(buttonEdit_InputFile.Text), exportNames);
 
