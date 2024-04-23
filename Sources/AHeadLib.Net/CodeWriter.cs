@@ -317,6 +317,11 @@ namespace AHeadLib.Net
                 }
             }
 
+            if(!Directory.Exists(Path.GetDirectoryName(TargetPath!)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(TargetPath!));
+            }
+
             File.WriteAllBytes(TargetPath!, utf8Codes);
 
             return ECodeWriterSaveResult.Success;

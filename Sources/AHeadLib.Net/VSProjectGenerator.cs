@@ -24,15 +24,30 @@ namespace AHeadLib.Net
         public void Write()
         {
             WriteCpp();
+            WriteCppTemplates();
+            WriteCommonFiles();
             WriteAsm();
             WriteCPPProject();
         }
+
+        #region C++ Libs
+        private void WriteCppTemplates()
+        {
+            WriteComonUtilFile(Path.Combine(Directory, "Utils/MiniTools.h"), Properties.Resources.MiniTools_h);
+            WriteComonUtilFile(Path.Combine(Directory, "Utils/MiniTools.cpp"), Properties.Resources.MiniTools_cpp);
+            WriteComonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.h"), Properties.Resources.MemoryPatchConfig_h);
+            WriteComonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.cpp"), Properties.Resources.MemoryPatchConfig_cpp);
+
+            WriteComonUtilFile(Path.Combine(Directory, "GeneratedFiles/BuiltinImplementations.cpp"), Properties.Resources.BuiltinImplementations);
+            WriteComonUtilFile(Path.Combine(Directory, "UserFiles/UserImplementations.cpp"), Properties.Resources.UserImplementations);
+        }
+        #endregion
 
         #region C++        
 
         private void WriteCpp()
         {
-            CodeWriter writer = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".c"));
+            CodeWriter writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + ".c"));
 
             string exportedPointers = string.Join(Environment.NewLine, Methods.Select(x => $"void* {x}Ptr = NULL;"));
             string exportedFunctions = string.Join(Environment.NewLine, Methods.Select(x => $"extern void WINAPI ASM_{x}();"));
@@ -58,7 +73,7 @@ namespace AHeadLib.Net
             writer.WriteNewLine();
             writer.Save();
 
-            CodeWriter mainWriter = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + "_DllMain.c"));
+            CodeWriter mainWriter = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_DllMain.c"));
 
             mainWriter.Write(Properties.Resources.DllMain);
             mainWriter.Save();
@@ -69,7 +84,7 @@ namespace AHeadLib.Net
         private void WriteAsm()
         {
             {
-                CodeWriter x86Writer = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + "_x86.asm"));
+                CodeWriter x86Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x86.asm"));
 
                 StringBuilder builder = new StringBuilder();
                 string externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF _{x}Ptr:DWORD"));
@@ -92,7 +107,7 @@ namespace AHeadLib.Net
             }
 
             {
-                CodeWriter x64Writer = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + "_x64.asm"));
+                CodeWriter x64Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x64.asm"));
 
                 StringBuilder builder = new StringBuilder();
                 string externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF {x}Ptr:QWORD"));
@@ -116,28 +131,50 @@ namespace AHeadLib.Net
         }
         #endregion
 
+        #region Common Files
+        private void WriteBinaryCodeFile(string name, byte[] bytes)
+        {
+            CodeWriter wirter = new CodeWriter(name);
+
+            string codes = Encoding.UTF8.GetString(bytes);
+            codes = codes.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
+
+            wirter.Write(codes);
+            wirter.Save();
+        }
+
+        private void WriteTextCodeFile(string name, string text)
+        {
+            CodeWriter writer = new CodeWriter(name);
+
+            text = text.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
+
+            writer.Write(text);
+            writer.Save();
+        }
+
+        private void WriteComonUtilFile(string name, string text)
+        {
+            CodeWriter writer = new CodeWriter(name);
+
+            writer.Write(text);
+            writer.Save();
+        }
+
+        private void WriteCommonFiles()
+        {
+            WriteTextCodeFile(Path.Combine(Directory, "Resources/resource.h"), Properties.Resources.resource);
+            WriteTextCodeFile(Path.Combine(Directory, "Resources", Path.GetFileNameWithoutExtension(Name) + ".rc"), Properties.Resources.resource_rc);
+            WriteTextCodeFile(Path.Combine(Directory, "Resources", Path.GetFileNameWithoutExtension(Name) + "_patch.txt"), Properties.Resources.patch);
+        }
+        #endregion
+
         #region Projects
         private void WriteCPPProject()
         {
-            {
-                CodeWriter vcxProjWriter = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".vcxproj"));
-
-                string vcxCode = Encoding.UTF8.GetString(Properties.Resources.vcxprojTemplate);
-                vcxCode = vcxCode.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
-
-                vcxProjWriter.Write(vcxCode);
-                vcxProjWriter.Save();
-            }
-
-            {
-                CodeWriter vcxProjWriter = new CodeWriter(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".sln"));
-
-                string slnCode = Encoding.UTF8.GetString(Properties.Resources.solution);
-                slnCode = slnCode.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
-
-                vcxProjWriter.Write(slnCode);
-                vcxProjWriter.Save();
-            }
+            WriteBinaryCodeFile(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".vcxproj"), Properties.Resources.vcxprojTemplate);
+            WriteBinaryCodeFile(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".vcxproj.filters"), Properties.Resources.vcxprojTemplate_filters);
+            WriteBinaryCodeFile(Path.Combine(Directory, Path.GetFileNameWithoutExtension(Name) + ".sln"), Properties.Resources.solution);
         }
         #endregion
     }

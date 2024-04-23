@@ -19,18 +19,33 @@
         </ProjectConfiguration>
     </ItemGroup>
     <ItemGroup>
-        <MASM Include="${LIB_NAME}_x64.asm">
+        <MASM Include="GeneratedFiles/${LIB_NAME}_x64.asm">
             <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
             <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
         </MASM>
-        <MASM Include="${LIB_NAME}_x86.asm">
+        <MASM Include="GeneratedFiles/${LIB_NAME}_x86.asm">
             <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
             <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
         </MASM>
     </ItemGroup>
     <ItemGroup>
-        <ClCompile Include="${LIB_NAME}_DllMain.c" />
-        <ClCompile Include="${LIB_NAME}.c" />
+        <ClCompile Include="GeneratedFiles/${LIB_NAME}_DllMain.c" />
+        <ClCompile Include="GeneratedFiles/${LIB_NAME}.c" />
+        <ClCompile Include="GeneratedFiles/BuiltinImplementations.cpp" />
+        <ClCompile Include="Utils/MemoryPatchConfig.cpp" />
+        <ClCompile Include="Utils/MiniTools.cpp" />
+        <ClCompile Include="UserFiles/UserImplementations.cpp" />        
+    </ItemGroup>
+    <ItemGroup>
+        <ClInclude Include="Resources/resource.h" />
+        <ClInclude Include="Utils/MemoryPatchConfig.h" />
+        <ClInclude Include="Utils/MiniTools.h" />
+    </ItemGroup>
+    <ItemGroup>
+        <ResourceCompile Include="Resources/${LIB_NAME}.rc" />
+    </ItemGroup>
+    <ItemGroup>
+        <Text Include="Resources/${LIB_NAME}_patch.txt" />
     </ItemGroup>
     <PropertyGroup Label="Globals">
         <VCProjectVersion>17.0</VCProjectVersion>
@@ -92,6 +107,7 @@
             <PreprocessorDefinitions>WIN32;_DEBUG;WINMM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <AdditionalIncludeDirectories>Utils/;GeneratedFiles/;Resources/;</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>
@@ -108,6 +124,7 @@
             <PreprocessorDefinitions>WIN32;NDEBUG;WINMM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <AdditionalIncludeDirectories>Utils/;GeneratedFiles/;Resources/;</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>
@@ -124,6 +141,7 @@
             <PreprocessorDefinitions>_DEBUG;WINMM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <AdditionalIncludeDirectories>Utils/;GeneratedFiles/;Resources/;</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>
@@ -140,6 +158,7 @@
             <PreprocessorDefinitions>NDEBUG;WINMM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <AdditionalIncludeDirectories>Utils/;GeneratedFiles/;Resources/;</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>

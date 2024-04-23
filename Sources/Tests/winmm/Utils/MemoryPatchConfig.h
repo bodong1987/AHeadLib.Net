@@ -64,3 +64,4 @@ std::string LoadFileContent(const TCHAR* path);
 
 std::vector<MemoryPatchConfig> LoadFileConfigurations();
 
+

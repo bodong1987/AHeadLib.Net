@@ -143,11 +143,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.ico" />
+    <Content Include="Properties\CppLibs\MemoryPatchConfig.cpp" />
+    <Content Include="Properties\CppLibs\MemoryPatchConfig.h" />
+    <Content Include="Properties\CppLibs\MiniTools.cpp" />
+    <Content Include="Properties\CppLibs\MiniTools.h" />
     <Content Include="Properties\Templates\Asm_x64.asm" />
     <Content Include="Properties\Templates\Asm_x86.asm" />
+    <Content Include="Properties\Templates\BuiltinImplementations.cpp" />
     <Content Include="Properties\Templates\CppHelper.c" />
     <Content Include="Properties\Templates\DllMain.c" />
+    <Content Include="Properties\Templates\patch.txt" />
+    <Content Include="Properties\Templates\resource.h" />
+    <Content Include="Properties\Templates\resource.rc" />
     <Content Include="Properties\Templates\solution.sln" />
+    <Content Include="Properties\Templates\UserImplementations.cpp" />
+    <Content Include="Properties\Templates\vcxprojTemplate.filters" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

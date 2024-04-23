@@ -397,3 +397,4 @@ std::vector<MemoryPatchConfig> LoadFileConfigurations()
     return parser.TakeConfigurations();
 }
 
+

@@ -6,6 +6,8 @@
 #include <windows.h>
 
 extern void __CheckedLoad();
+extern void __ApplyBuiltinPatches();
+extern void __ExecuteUserCutomCodes();
 
 BOOL WINAPI DllMain(
     HINSTANCE hinstDLL,  // handle to DLL module
@@ -20,7 +22,11 @@ BOOL WINAPI DllMain(
         // Return FALSE to fail DLL load.
         __CheckedLoad();
 
-        // add your process here
+        // apply internal patches
+        __ApplyBuiltinPatches();
+
+        // apply user custom codes
+        __ExecuteUserCutomCodes();
 
         break;
 

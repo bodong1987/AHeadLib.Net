@@ -1292,13 +1292,13 @@ extern void WINAPI ASM_waveOutWrite();
 #endif
 
 // bind native dll first
+extern void GetOrignalLibraryPath(TCHAR* bufferPtr, int bufferLength, const TCHAR* libName);
+
 void __CheckedLoad()
 {
     TCHAR szPath[MAX_PATH];
-    GetSystemDirectory(szPath, MAX_PATH);
 
-    lstrcat(szPath, TEXT("\\"));
-    lstrcat(szPath, TEXT("winmm.dll"));
+    GetOrignalLibraryPath(szPath, MAX_PATH, TEXT("winmm.dll"));
 
     // if your dll is not in system path
     // please reset szPath here

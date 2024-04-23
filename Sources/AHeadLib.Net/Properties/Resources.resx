@@ -124,16 +124,46 @@
   <data name="Asm_x86" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Templates/Asm_x86.asm;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="BuiltinImplementations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\BuiltinImplementations.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
   <data name="CppHelper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Templates/CppHelper.c;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="DllMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Templates/DllMain.c;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="MemoryPatchConfig_cpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>CppLibs\MemoryPatchConfig.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="MemoryPatchConfig_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>CppLibs\MemoryPatchConfig.h;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="MiniTools_cpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>CppLibs\MiniTools.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="MiniTools_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>CppLibs\MiniTools.h;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="patch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\patch.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="resource" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\resource.h;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="resource_rc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\resource.rc;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
+  </data>
   <data name="solution" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Templates/solution.sln;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UserImplementations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\UserImplementations.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
   <data name="vcxprojTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Templates/vcxprojTemplate.vcxproj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vcxprojTemplate_filters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Templates\vcxprojTemplate.filters;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

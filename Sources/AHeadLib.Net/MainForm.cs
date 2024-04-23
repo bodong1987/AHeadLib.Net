@@ -17,8 +17,11 @@ namespace AHeadLib.Net
         {
             InitializeComponent();
 
-           // buttonEdit_InputFile.Text = "C:\\Windows\\System32\\winmm.dll";
-           // buttonEdit_OutputDirectory.Text = "E:\\Desktop\\New Folder";
+#if DEBUG
+            // for test only...
+            buttonEdit_InputFile.Text = "C:\\Windows\\System32\\winmm.dll";
+            buttonEdit_OutputDirectory.Text = "E:\\Desktop\\New Folder";
+#endif
         }
 
         private void buttonEdit_InputFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
