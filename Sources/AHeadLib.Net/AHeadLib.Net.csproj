@@ -136,24 +136,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Properties\vcxprojTemplate.vcxproj" />
+    <None Include="Properties\Templates\vcxprojTemplate.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.ico" />
-    <Content Include="Properties\CppHelper.c" />
-    <None Include="Properties\solution.sln" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\DllMain.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Asm_x64.asm" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Asm_x86.asm" />
+    <Content Include="Properties\Templates\Asm_x64.asm" />
+    <Content Include="Properties\Templates\Asm_x86.asm" />
+    <Content Include="Properties\Templates\CppHelper.c" />
+    <Content Include="Properties\Templates\DllMain.c" />
+    <Content Include="Properties\Templates\solution.sln" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
