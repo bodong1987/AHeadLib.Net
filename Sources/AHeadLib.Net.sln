@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{359A12C9-9C58-4043-ACBC-32E2971FEAC5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winmm", "UnitTests\winmm.vcxproj", "{FF3B982E-2504-4209-B3ED-1CD49BCAD2BA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winmm", "UnitTests\winmm\winmm.vcxproj", "{FF3B982E-2504-4209-B3ED-1CD49BCAD2BA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppUtilTests", "UnitTests\CppUtilTests\CppUtilTests.vcxproj", "{104C1A7C-1131-401A-BE43-3B32677F5A45}"
 EndProject
