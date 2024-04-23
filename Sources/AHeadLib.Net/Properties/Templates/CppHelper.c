@@ -21,8 +21,12 @@ static void* __CheckedGetFunction(HMODULE module, const char* methodName)
         char szMessage[256];
         wsprintfA(szMessage, "Failed bind method:%s", methodName);
 
+        OutputDebugStringA(szMessage);
+
+#if DEBUG
         MessageBoxA(0, szMessage, "AHeadLib.Net Error", 0);
         ExitProcess(-1);
+#endif
     }
 
     return Result;

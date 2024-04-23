@@ -4,17 +4,17 @@
 ;library : dll name with .dll extension or 0, 0 is the main module
 ;segenemnt : segment name, eg: .text|.data
 ;signature : hex byte value sequence, splitted by space
-;newCodes : hex byte value sequence, splitted by space
+;newBytes : hex byte value sequence, splitted by space
 
 ; for example:
 ;library    : 0
 ;segment    : .text
 ;signature  : 0x1D 0x2D 0x3D
-;newCodes   : 0x55 0x6B 0x7D
+;newBytes   : 0x55 0x6B 0x7D
 
 ; for example2 : 
 ;library    : proxy.dll
 ;segment    : .text
 ;signature  : 2B 3C 4F 33
-;newCodes   : 1B 2F 3E 23
+;newBytes   : 1B 2F 3E 23
 

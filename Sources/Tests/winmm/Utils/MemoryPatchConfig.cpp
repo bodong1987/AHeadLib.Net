@@ -196,7 +196,7 @@ MemoryPatchConfigParser::MemoryPatchConfigParser(const char* text)
         });
 
     MemoryPatchConfig config;
-    
+        
     for (auto& str : lines)
     {
         Trim(str);
@@ -205,14 +205,17 @@ MemoryPatchConfigParser::MemoryPatchConfigParser(const char* text)
         {
             continue;
         }
-
-        if (StartWith(str, "segment"))
+        else if (StartWith(str, "library"))
         {
-            if (config.IsValid())
-            {
-                Configurations.emplace_back(std::move(config));
-            }
+            config.ModuleName = GetName(str);
 
+            if (config.ModuleName == "0")
+            {
+                config.ModuleName.clear();
+            }
+        }
+        else if (StartWith(str, "segment"))
+        {
             config.SegmentName = GetName(str);
         }
         else if (StartWith(str, "signature"))
@@ -223,11 +226,19 @@ MemoryPatchConfigParser::MemoryPatchConfigParser(const char* text)
         {
             config.NewBytes = GetBytes(str);
         }
+
+        if (config.IsValid())
+        {
+            Configurations.emplace_back(std::move(config));
+
+            config = MemoryPatchConfig();
+        }
     }
 
     if (config.IsValid())
     {
         Configurations.emplace_back(std::move(config));
+        config = MemoryPatchConfig();
     }
 }
 
@@ -240,8 +251,8 @@ std::string MemoryPatchConfigParser::GetName(const std::string& text)
         return std::string();
     }
 
-    std::string name = text.substr(pos+1);
-    
+    std::string name = text.substr(pos + 1);
+
     return TrimCopy(name);
 }
 
@@ -249,7 +260,7 @@ BYTE ConvertHexStringToByte(const std::string& str)
 {
     if (str.size() > 2 && str[0] == '0' && toupper(str[1]) == 'X')
     {
-        return (BYTE)strtoul(str.c_str()+2, nullptr, 16);
+        return (BYTE)strtoul(str.c_str() + 2, nullptr, 16);
     }
 
     return (BYTE)strtoul(str.c_str(), nullptr, 16);
@@ -267,7 +278,7 @@ std::vector<BYTE> MemoryPatchConfigParser::GetBytes(const std::string& text)
     std::string values = TrimCopy(text.substr(pos + 1));
 
     std::vector<std::string> hexValues;
-    Split(hexValues, values, [](char ch){ return ch == ' ';});
+    Split(hexValues, values, [](char ch) { return ch == ' '; });
 
     std::vector<BYTE> bytes;
 
@@ -287,7 +298,7 @@ void PatchMemoryWithConfig(const std::vector<MemoryPatchConfig>& configs)
     {
         if (config.IsValid())
         {
-            HMODULE module = ::GetModuleHandleA(config.ModuleName.empty()?nullptr:config.ModuleName.c_str());
+            HMODULE module = ::GetModuleHandleA(config.ModuleName.empty() ? nullptr : config.ModuleName.c_str());
 
             PatchMemory(module, config.SegmentName.c_str(), (const void*)config.Signature.data(), (const void*)config.NewBytes.data(), (int)config.NewBytes.size());
         }
@@ -302,18 +313,18 @@ std::string LoadTextResource(int resourceId)
         (LPCTSTR)LoadTextResource,
         &hModule);
 
-    HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(resourceId), RT_RCDATA);
+    HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(resourceId), TEXT("TXT"));
     if (hResource == nullptr)
     {
         return "";
     }
-        
+
 
     HGLOBAL hMemory = LoadResource(hModule, hResource);
     if (hMemory == nullptr)
     {
         return "";
-    }        
+    }
 
     DWORD dwSize = SizeofResource(hModule, hResource);
     LPVOID lpAddress = LockResource(hMemory);
@@ -347,7 +358,7 @@ std::string LoadFileConfigText()
     if (pos != std::string::npos)
     {
         strPath = strPath.substr(0, pos);
-    }        
+    }
 
     strPath += TEXT(".patchconfig");
 
@@ -361,10 +372,10 @@ std::string LoadFileContent(const TCHAR* path)
     {
         return "";
     }
-        
+
 
     DWORD fileSize = GetFileSize(hFile, NULL);
-    if (fileSize == INVALID_FILE_SIZE) 
+    if (fileSize == INVALID_FILE_SIZE)
     {
         CloseHandle(hFile);
         return "";
@@ -372,7 +383,7 @@ std::string LoadFileContent(const TCHAR* path)
 
     char* buffer = new char[fileSize + 1];
     DWORD bytesRead;
-    if (!ReadFile(hFile, buffer, fileSize, &bytesRead, NULL) || bytesRead != fileSize) 
+    if (!ReadFile(hFile, buffer, fileSize, &bytesRead, NULL) || bytesRead != fileSize)
     {
         delete[] buffer;
         CloseHandle(hFile);
