@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winmm", "Tests\winmm\winmm.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppUtilTests", "Tests\CppUtilTests\CppUtilTests.vcxproj", "{104C1A7C-1131-401A-BE43-3B32677F5A45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "Tests\UnitTestProject\UnitTestProject.csproj", "{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,18 @@ Global
 		{104C1A7C-1131-401A-BE43-3B32677F5A45}.Release|x64.Build.0 = Release|x64
 		{104C1A7C-1131-401A-BE43-3B32677F5A45}.Release|x86.ActiveCfg = Release|Win32
 		{104C1A7C-1131-401A-BE43-3B32677F5A45}.Release|x86.Build.0 = Release|Win32
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|x64.Build.0 = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Debug|x86.Build.0 = Debug|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|x64.ActiveCfg = Release|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|x64.Build.0 = Release|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|x86.ActiveCfg = Release|Any CPU
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FF3B982E-2504-4209-B3ED-1CD49BCAD2BA} = {359A12C9-9C58-4043-ACBC-32E2971FEAC5}
 		{104C1A7C-1131-401A-BE43-3B32677F5A45} = {359A12C9-9C58-4043-ACBC-32E2971FEAC5}
+		{80E2B7E8-8CE7-4ADB-95AB-E13C12B60CD6} = {359A12C9-9C58-4043-ACBC-32E2971FEAC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8E885D9-F64D-42F5-9B33-823C5D7DD0BC}
