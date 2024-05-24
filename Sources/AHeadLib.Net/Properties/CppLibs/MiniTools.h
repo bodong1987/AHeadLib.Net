@@ -30,12 +30,21 @@
 
 #endif
 
+// if you want to disable error report by message box
+// change DISABLE_REPORT_ERROR_BY_MESSAGEBOX to 1
+#define DISABLE_REPORT_ERROR_BY_MESSAGEBOX 0
+
+#if DISABLE_REPORT_ERROR_BY_MESSAGEBOX
+#define ShowMessageBox(...) 
+#else
+#define ShowMessageBox(...) MessageBox(__VA_ARGS__)
+#endif
 
 G_BEGIN_DECLS
-bool ReplaceMemory(void* dest, const void* source, int length);
-bool FindModuleSection(HMODULE module, const char* segmentName, void** outSectionStart, LONGLONG* outSize);
+BOOL ReplaceMemory(void* dest, const void* source, int length);
+BOOL FindModuleSection(HMODULE module, const char* segmentName, void** outSectionStart, LONGLONG* outSize);
 void* SearchInSection(HMODULE module, const char* segmentName, const void* signature, int length);
 void* SearchInMemory(const void* startPos, const void* endPos, const void* signature, int length);
-bool PatchMemory(HMODULE module, const char* segmentName, const void* signature, const void* newBytes, int length);
-bool PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, int* lengthPtr, int count);
+BOOL PatchMemory(HMODULE module, const char* segmentName, const void* signature, const void* newBytes, int length);
+BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, int* lengthPtr, int count);
 G_END_DECLS

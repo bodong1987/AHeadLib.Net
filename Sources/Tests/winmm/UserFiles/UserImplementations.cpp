@@ -5,6 +5,7 @@
 
 #include "MemoryPatchConfig.h"
 #include <cassert>
+#include <tchar.h>
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
@@ -34,5 +35,27 @@ extern "C"
     void __ExecuteUserCutomCodes()
     {
         #pragma message(MESSAGE_RAISE_LOCATION "If you want to append custom code that is executed when the Dll is loaded, please add it here.")
+    }
+
+    int __CheckShouldExecuteAttachCode()
+    {
+        // this is example code, it limit execute process name:
+        #if 0
+        TCHAR szName[MAX_PATH];
+        GetModuleFileName(NULL, szName, MAX_PATH);
+        TCHAR* fileName = _tcsrchr(szName, _T('\\'));
+        if (fileName != nullptr && _tcscmp(fileName + 1, _T("xxxxx.exe")) == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+        #endif
+
+        #pragma message(MESSAGE_RAISE_LOCATION "If you return 0 here, none of the Attach related code in DllMain will be executed.")
+
+        return 1;
     }
 }

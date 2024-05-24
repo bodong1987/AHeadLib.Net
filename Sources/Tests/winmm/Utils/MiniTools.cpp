@@ -9,16 +9,16 @@
 
 G_BEGIN_DECLS
 
-bool ReplaceMemory(void* dest, const void* source, int length)
+BOOL ReplaceMemory(void* dest, const void* source, int length)
 {
     void* TargetAddress = dest;
 
     DWORD oldProtect;
     if (!VirtualProtect(TargetAddress, length, PAGE_EXECUTE_READWRITE, &oldProtect))
     {
-        MessageBox(0, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
+        ShowMessageBox(0, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
 
-        return false;
+        return FALSE;
     }
 
     memcpy(TargetAddress, source, length);
@@ -26,17 +26,17 @@ bool ReplaceMemory(void* dest, const void* source, int length)
     if (!VirtualProtect(TargetAddress, length, oldProtect, &oldProtect))
     {
         // error
-        MessageBox(0, TEXT("Failed write code."), TEXT("Error"), 0);
-        return false;
+        ShowMessageBox(0, TEXT("Failed write code."), TEXT("Error"), 0);
+        return FALSE;
     }
 
     // clear
     FlushInstructionCache(GetCurrentProcess(), TargetAddress, length);
 
-    return true;
+    return TRUE;
 }
 
-bool FindModuleSection(HMODULE module, const char* segmentName, void** outSectionStart, LONGLONG* outSize)
+BOOL FindModuleSection(HMODULE module, const char* segmentName, void** outSectionStart, LONGLONG* outSize)
 {
     *outSectionStart = nullptr;
     *outSize = 0;
@@ -60,11 +60,11 @@ bool FindModuleSection(HMODULE module, const char* segmentName, void** outSectio
              *outSectionStart = (void*)sectionBase; 
              *outSize = sectionSize;
 
-             return true;
+             return TRUE;
         }        
     }
 
-    return false;
+    return FALSE;
 }
 
 void* SearchInSection(HMODULE module, const char* segmentName, const void* signature, int length)
@@ -92,7 +92,7 @@ void* SearchInMemory(const void* startPos, const void* endPos, const void* signa
     return (void*)position;
 }
 
-bool PatchMemory(HMODULE module, const char* segmentName, const void* signature, const void* newBytes, int length)
+BOOL PatchMemory(HMODULE module, const char* segmentName, const void* signature, const void* newBytes, int length)
 {
     void* pos = SearchInSection(module, segmentName, signature, length);
 
@@ -100,22 +100,22 @@ bool PatchMemory(HMODULE module, const char* segmentName, const void* signature,
 
     if (pos == nullptr)
     {
-        return false;
+        return FALSE;
     }
 
     ReplaceMemory(pos, newBytes, length);
 
-    return true;
+    return TRUE;
 }
 
-bool PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, int* lengthPtr, int count)
+BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, int* lengthPtr, int count)
 {
     void* SectionStart = nullptr;
     LONGLONG SectionSize = 0;
 
     if (!FindModuleSection(module, segmentName, &SectionStart, &SectionSize))
     {
-        return false;
+        return FALSE;
     }
 
     for (int i = 0; i < count; ++i)
@@ -128,11 +128,11 @@ bool PatchMultipleMemories(HMODULE module, const char* segmentName, const void**
 
         if (!ReplaceMemory(position, newBytes, length))
         {
-            return false;
+            return FALSE;
         }
     }
 
-    return true;
+    return TRUE;
 }
 
 G_END_DECLS

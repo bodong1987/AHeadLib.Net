@@ -4,6 +4,7 @@
 // Powered by bodong
 
 #include <windows.h>
+#include "MiniTools.h"
 
 #if defined(_WIN64) || defined(_X64) || defined(WIN64) || defined( __LP64__ )
 #define __X64_BUILD__ 1
@@ -1312,7 +1313,7 @@ void __CheckedLoad()
     {
         TCHAR szMessage[MAX_PATH];
         wsprintf(szMessage, TEXT("Failed load dll from:%s"), szPath);
-        MessageBox(0, szMessage, TEXT("AHeadLib.Net Error"), 0);
+        ShowMessageBox(0, szMessage, TEXT("AHeadLib.Net Error"), 0);
         
         ExitProcess(1);
         return;
