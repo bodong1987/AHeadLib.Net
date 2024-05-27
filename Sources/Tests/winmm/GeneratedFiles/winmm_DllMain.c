@@ -19,12 +19,12 @@ BOOL WINAPI DllMain(
     switch (fdwReason)
     {
     case DLL_PROCESS_ATTACH:
+        // Initialize once for each new process.
+        // Return FALSE to fail DLL load.
+        __CheckedLoad();
+
         if (__CheckShouldExecuteAttachCode() > 0)
         {
-            // Initialize once for each new process.
-            // Return FALSE to fail DLL load.
-            __CheckedLoad();
-
             // apply internal patches
             __ApplyBuiltinPatches();
 
