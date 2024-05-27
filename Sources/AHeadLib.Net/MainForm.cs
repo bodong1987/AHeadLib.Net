@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Reflection;
 
 namespace AHeadLib.Net
 {
@@ -22,6 +23,11 @@ namespace AHeadLib.Net
             buttonEdit_InputFile.Text = "C:\\Windows\\System32\\winmm.dll";
             buttonEdit_OutputDirectory.Text = "E:\\Desktop\\New Folder";
 #endif
+            var filePath = Assembly.GetExecutingAssembly().Location;
+
+            var fileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
+
+            Text = $"AHeadLib.Net v{fileVersionInfo.FileVersion}";
         }
 
         private void buttonEdit_InputFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

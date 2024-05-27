@@ -259,7 +259,7 @@
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("MainFrom.IconOptions.SvgImage")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "MainFrom";
-            this.Text = "AHeadLib.Net v1.0.2.0";
+            this.Text = "AHeadLib.Net v1.0.0.0";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit_Log.Properties)).EndInit();
