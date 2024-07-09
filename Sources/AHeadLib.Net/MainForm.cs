@@ -1,18 +1,16 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Reflection;
+// ReSharper disable InvertIf
 
 namespace AHeadLib.Net
 {
-    public partial class MainFrom : DevExpress.XtraEditors.XtraForm
+    public partial class MainFrom : XtraForm
     {
         public MainFrom()
         {
@@ -20,8 +18,9 @@ namespace AHeadLib.Net
 
 #if DEBUG
             // for test only...
-            buttonEdit_InputFile.Text = "C:\\Windows\\System32\\winmm.dll";
-            buttonEdit_OutputDirectory.Text = "E:\\Desktop\\New Folder";
+            // ReSharper disable once StringLiteralTypo
+            buttonEdit_InputFile.Text = @"C:\Windows\System32\winmm.dll";
+            buttonEdit_OutputDirectory.Text = @"E:\Desktop\New Folder";
 
             try
             {
@@ -39,7 +38,8 @@ namespace AHeadLib.Net
 
             var fileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
 
-            Text = $"AHeadLib.Net v{fileVersionInfo.FileVersion}";
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Text = $@"AHeadLib.Net v{fileVersionInfo.FileVersion}";
         }
 
         private void buttonEdit_InputFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -62,7 +62,7 @@ namespace AHeadLib.Net
             buttonEdit_OutputDirectory.Text = xtraFolderBrowserDialog_OpenOutputDirectory.SelectedPath;
         }
 
-        private void RefershGenerateButtonState()
+        private void RefreshGenerateButtonState()
         {
             simpleButton_Generate.Enabled = 
                 !string.IsNullOrEmpty(buttonEdit_InputFile.Text) && File.Exists(buttonEdit_InputFile.Text) &&
@@ -106,7 +106,7 @@ namespace AHeadLib.Net
 
             exportNames = names;
 
-            VSProjectGenerator generator = new VSProjectGenerator(buttonEdit_OutputDirectory.Text, Path.GetFileName(buttonEdit_InputFile.Text), exportNames);
+            var generator = new VsProjectGenerator(buttonEdit_OutputDirectory.Text, Path.GetFileName(buttonEdit_InputFile.Text), exportNames);
 
             generator.Write();
 
@@ -115,12 +115,12 @@ namespace AHeadLib.Net
 
         private void buttonEdit_InputFile_EditValueChanged(object sender, EventArgs e)
         {
-            RefershGenerateButtonState();
+            RefreshGenerateButtonState();
         }
 
         private void buttonEdit_OutputDirectory_EditValueChanged(object sender, EventArgs e)
         {
-            RefershGenerateButtonState();
+            RefreshGenerateButtonState();
         }
 
         private void Log(string message)
