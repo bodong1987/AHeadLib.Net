@@ -8,10 +8,10 @@
 extern void CheckedLoad();
 extern void ApplyBuiltinPatches();
 extern void ExecuteUserCustomCodes();
-extern int ShouldExecuteAttachCode();
+extern bool ShouldExecuteAttachCode();
 
 BOOL WINAPI DllMain(
-    HINSTANCE hinstDLL,  // handle to DLL module
+    HINSTANCE /*hInstance*/,  // handle to DLL module
     DWORD fdwReason,     // reason for calling function
     LPVOID lpvReserved)  // reserved
 {
@@ -23,7 +23,7 @@ BOOL WINAPI DllMain(
         // Return FALSE to fail DLL load.
         CheckedLoad();
 
-        if (ShouldExecuteAttachCode() > 0)
+        if (ShouldExecuteAttachCode())
         {
             // apply internal patches
             ApplyBuiltinPatches();
@@ -33,23 +33,21 @@ BOOL WINAPI DllMain(
         }
 
         break;
-
-    case DLL_THREAD_ATTACH:
-        // Do thread-specific initialization.
-        break;
-
-    case DLL_THREAD_DETACH:
-        // Do thread-specific cleanup.
+        
+    case DLL_THREAD_ATTACH: // Do thread-specific initialization.
+    case DLL_THREAD_DETACH: // Do thread-specific cleanup.        
         break;
 
     case DLL_PROCESS_DETACH:
 
-        if (lpvReserved != NULL)
+        if (lpvReserved != nullptr)
         {
             break; // do not do cleanup if process termination scenario
         }
 
         // Perform any necessary cleanup.
+        break;
+    default:
         break;
     }
     return TRUE;  // Successful DLL_PROCESS_ATTACH.

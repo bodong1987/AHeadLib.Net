@@ -7,10 +7,10 @@
     <ClCompile Include="Utils/MiniTools.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles/winmm.c">
+    <ClCompile Include="GeneratedFiles/winmm.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles/winmm_DllMain.c">
+    <ClCompile Include="GeneratedFiles/winmm_DllMain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles/BuiltinImplementations.cpp">

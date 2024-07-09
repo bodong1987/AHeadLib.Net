@@ -7,8 +7,6 @@
 #include <algorithm>
 #include <cassert>
 
-G_BEGIN_DECLS
-
 BOOL ReplaceMemory(void* dest, const void* source, int length)
 {
     void* TargetAddress = dest;
@@ -16,7 +14,7 @@ BOOL ReplaceMemory(void* dest, const void* source, int length)
     DWORD oldProtect;
     if (!VirtualProtect(TargetAddress, length, PAGE_EXECUTE_READWRITE, &oldProtect))
     {
-        AHEAD_LIB_SHOW_MESSAGE_BOX(0, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
+        AHEAD_LIB_SHOW_MESSAGE_BOX(nullptr, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
 
         return FALSE;
     }
@@ -26,7 +24,7 @@ BOOL ReplaceMemory(void* dest, const void* source, int length)
     if (!VirtualProtect(TargetAddress, length, oldProtect, &oldProtect))
     {
         // error
-        AHEAD_LIB_SHOW_MESSAGE_BOX(0, TEXT("Failed write code."), TEXT("Error"), 0);
+        AHEAD_LIB_SHOW_MESSAGE_BOX(nullptr, TEXT("Failed write code."), TEXT("Error"), 0);
         return FALSE;
     }
 
@@ -45,22 +43,22 @@ BOOL FindModuleSection(HMODULE module, const char* segmentName, void** outSectio
     GetModuleInformation(GetCurrentProcess(), module, &module_info, sizeof(module_info));
     void* Address = module_info.lpBaseOfDll;
 
-    // get moudle pe
-    PIMAGE_DOS_HEADER dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(Address);
-    PIMAGE_NT_HEADERS ntHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>((BYTE*)Address + dosHeader->e_lfanew);
+    // get module pe
+    const auto dosHeader = static_cast<PIMAGE_DOS_HEADER>(Address);
+    auto ntHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>(static_cast<BYTE*>(Address) + dosHeader->e_lfanew);
 
-    PIMAGE_SECTION_HEADER sectionHeader = IMAGE_FIRST_SECTION(ntHeaders);
+    auto sectionHeader = IMAGE_FIRST_SECTION(ntHeaders);
     for (int i = 0; i < ntHeaders->FileHeader.NumberOfSections; i++, sectionHeader++)
     {
-        LONGLONG sectionBase = (LONGLONG)Address + sectionHeader->VirtualAddress;
-        LONGLONG sectionSize = sectionHeader->Misc.VirtualSize;
+        const LONGLONG sectionBase = reinterpret_cast<LONGLONG>(Address) + sectionHeader->VirtualAddress;
+        const LONGLONG sectionSize = sectionHeader->Misc.VirtualSize;
 
-        if (strcmp((char*)sectionHeader->Name, segmentName) == 0)
+        if (strcmp(reinterpret_cast<char*>(sectionHeader->Name), segmentName) == 0)
         {
-             *outSectionStart = (void*)sectionBase; 
-             *outSize = sectionSize;
+            *outSectionStart = reinterpret_cast<void*>(sectionBase); // NOLINT(performance-no-int-to-ptr)
+            *outSize = sectionSize;
 
-             return TRUE;
+            return TRUE;
         }        
     }
 
@@ -77,19 +75,24 @@ void* SearchInSection(HMODULE module, const char* segmentName, const void* signa
         return nullptr;
     }
 
-    return SearchInMemory(SectionStart, (BYTE*)SectionStart + SectionSize, signature, length);
+    return SearchInMemory(SectionStart, static_cast<BYTE*>(SectionStart) + SectionSize, signature, length);
 }
 
 void* SearchInMemory(const void* startPos, const void* endPos, const void* signature, int length)
 {
-    const BYTE* position = std::search((BYTE*)(startPos), (BYTE*)endPos, (BYTE*)signature, (BYTE*)signature + length);
+    const BYTE* position = std::search(
+        const_cast<BYTE*>(static_cast<const BYTE*>(startPos)),
+        const_cast<BYTE*>(static_cast<const BYTE*>(endPos)),
+        static_cast<const BYTE*>(signature),
+        static_cast<const BYTE*>(signature) + length
+        );  
 
-    if (position == nullptr || position == (BYTE*)endPos)
+    if (position == nullptr || position == const_cast<BYTE*>(static_cast<const BYTE*>(endPos)))
     {
         return nullptr;
-    }
+    }   
 
-    return (void*)position;
+    return const_cast<BYTE*>(position);
 }
 
 BOOL PatchMemory(HMODULE module, const char* segmentName, const void* signature, const void* newBytes, int length)
@@ -108,7 +111,7 @@ BOOL PatchMemory(HMODULE module, const char* segmentName, const void* signature,
     return TRUE;
 }
 
-BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, int* lengthPtr, int count)
+BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void** signaturePtr, const void** newBytesPtr, const int* lengthPtr, int count)
 {
     void* SectionStart = nullptr;
     LONGLONG SectionSize = 0;
@@ -124,7 +127,7 @@ BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void**
         const void* newBytes = newBytesPtr[i];
         const int length = lengthPtr[i];
 
-        void* position = SearchInMemory(SectionStart, (BYTE*)SectionStart + SectionSize, signature, length);
+        void* position = SearchInMemory(SectionStart, static_cast<BYTE*>(SectionStart) + SectionSize, signature, length);
 
         if (!ReplaceMemory(position, newBytes, length))
         {
@@ -135,4 +138,3 @@ BOOL PatchMultipleMemories(HMODULE module, const char* segmentName, const void**
     return TRUE;
 }
 
-G_END_DECLS

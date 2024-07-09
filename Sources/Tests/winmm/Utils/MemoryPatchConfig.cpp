@@ -8,24 +8,26 @@
 #include <string>
 #include "MiniTools.h"
 
+namespace
+{
 template <typename TCharType>
-inline bool IsTrimable(TCharType ch)
+inline bool CanTrim(TCharType ch)
 {
     return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r';
 }
 
-inline static int CompareN(const char* first, const char* second, std::size_t n)
+inline int CompareN(const char* first, const char* second, std::size_t n)
 {
     return strncmp(first, second, n);
 }
 
-inline static bool StartWith(const std::string& str, const std::string& start)
+inline bool StartWith(const std::string& str, const std::string& start)
 {
     return str.size() >= start.size() && CompareN(str.c_str(), start.c_str(), start.size()) == 0;
 }
 
 template<typename Predicate>
-inline static std::string& TrimLeft(std::string& str, Predicate predicate)
+inline std::string& TrimLeft(std::string& str, Predicate predicate)
 {
     for (SIZE_T i = 0; i < str.size(); ++i)
     {
@@ -43,35 +45,20 @@ inline static std::string& TrimLeft(std::string& str, Predicate predicate)
     return str;
 }
 
-template<typename Predicate>
-inline static std::string TrimLeftCopy(const std::string& str, Predicate predicate)
+inline std::string& TrimLeft(std::string& str)
 {
-    auto result = str;
-    TrimLeft<Predicate>(result, predicate);
-    return result;
-}
-
-inline static std::string& TrimLeft(std::string& str)
-{
-    return TrimLeft(str, IsTrimable<char>);
-}
-
-inline static std::string TrimLeftCopy(const std::string& str)
-{
-    auto result = str;
-    TrimLeft(result);
-    return result;
+    return TrimLeft(str, CanTrim<char>);
 }
 
 template<typename Predicate>
-inline static std::string& TrimRight(std::string& str, Predicate predicate)
+inline std::string& TrimRight(std::string& str, Predicate predicate)
 {
     if (str.empty())
     {
         return str;
     }
 
-    for (auto i = str.size() - 1; i >= 0 && i < str.size(); --i)
+    for (auto i = str.size() - 1; i != std::string::npos && i < str.size(); --i)
     {
         if (!predicate(str[i]))
         {
@@ -87,55 +74,19 @@ inline static std::string& TrimRight(std::string& str, Predicate predicate)
     return str;
 }
 
-template <typename Predicate>
-inline static std::string TrimRightCopy(const std::string& str, Predicate predicate)
+inline std::string& TrimRight(std::string& str)
 {
-    auto result = str;
-    TrimRight<Predicate>(result, predicate);
-    return result;
+    return TrimRight(str, CanTrim<char>);
 }
 
-inline static std::string& TrimRight(std::string& str)
-{
-    return TrimRight(str, IsTrimable<char>);
-}
-
-inline static std::string TrimRightCopy(const std::string& str)
-{
-    auto result = str;
-    TrimRight(result);
-    return result;
-}
-
-template<typename Predicate>
-inline static std::string& Trim(std::string& str, Predicate predicate)
-{
-    if (str.empty())
-    {
-        return str;
-    }
-
-    TrimLeft<Predicate>(str, predicate);
-    TrimRight<Predicate>(str, predicate);
-    return str;
-}
-
-template<typename Predicate>
-inline static std::string TrimCopy(const std::string& str, Predicate predicate)
-{
-    auto result = str;
-    Trim<Predicate>(result, predicate);
-    return result;
-}
-
-inline static std::string& Trim(std::string& str)
+inline std::string& Trim(std::string& str)
 {
     TrimLeft(str);
     TrimRight(str);
     return str;
 }
 
-inline static std::string TrimCopy(const std::string& str)
+inline std::string TrimCopy(const std::string& str)
 {
     auto result = str;
     Trim(result);
@@ -143,7 +94,7 @@ inline static std::string TrimCopy(const std::string& str)
 }
 
 template <typename Predicate>
-inline static typename std::string::size_type Find(const std::string& str, Predicate predicate, typename std::string::size_type startPos = 0)
+inline std::string::size_type Find(const std::string& str, Predicate predicate, std::string::size_type startPos = 0)
 {
     for (auto i = startPos; i < str.size(); ++i)
     {
@@ -157,12 +108,12 @@ inline static typename std::string::size_type Find(const std::string& str, Predi
 }
 
 template <typename TSequenceType, typename Predicate>
-inline static TSequenceType& Split(TSequenceType& sequence, const std::string& str, Predicate predicate)
+inline TSequenceType& Split(TSequenceType& sequence, const std::string& str, Predicate predicate)
 {
-    typedef typename std::string::size_type size_type;
+    typedef std::string::size_type SizeType;
 
-    size_type startPos = 0;
-    size_type pos = std::string::npos;
+    SizeType startPos = 0;
+    SizeType pos = std::string::npos;
     while ((pos = Find<Predicate>(str, predicate, startPos)) != std::string::npos)
     {
         if (pos == startPos)
@@ -182,8 +133,8 @@ inline static TSequenceType& Split(TSequenceType& sequence, const std::string& s
     }
 
     return sequence;
+}    
 }
-
 
 MemoryPatchConfigParser::MemoryPatchConfigParser(const char* text)
 {
@@ -244,38 +195,31 @@ MemoryPatchConfigParser::MemoryPatchConfigParser(const char* text)
 
 std::string MemoryPatchConfigParser::GetName(const std::string& text)
 {
-    auto pos = text.find_first_of(':', 0);
+    const auto pos = text.find_first_of(':', 0);
 
-    if (pos == std::string::npos)
-    {
-        return std::string();
-    }
-
-    std::string name = text.substr(pos + 1);
-
-    return TrimCopy(name);
+    return pos == std::string::npos ? std::string() : TrimCopy(text.substr(pos + 1));
 }
 
 BYTE ConvertHexStringToByte(const std::string& str)
 {
     if (str.size() > 2 && str[0] == '0' && toupper(str[1]) == 'X')
     {
-        return (BYTE)strtoul(str.c_str() + 2, nullptr, 16);
+        return static_cast<BYTE>(strtoul(str.c_str() + 2, nullptr, 16));
     }
 
-    return (BYTE)strtoul(str.c_str(), nullptr, 16);
+    return static_cast<BYTE>(strtoul(str.c_str(), nullptr, 16));
 }
 
 std::vector<BYTE> MemoryPatchConfigParser::GetBytes(const std::string& text)
 {
-    auto pos = text.find_first_of(':', 0);
+    const auto pos = text.find_first_of(':', 0);
 
     if (pos == std::string::npos)
     {
-        return std::vector<BYTE>();
+        return {};
     }
 
-    std::string values = TrimCopy(text.substr(pos + 1));
+    const std::string values = TrimCopy(text.substr(pos + 1));
 
     std::vector<std::string> hexValues;
     Split(hexValues, values, [](char ch) { return ch == ' '; });
@@ -298,9 +242,9 @@ void PatchMemoryWithConfig(const std::vector<MemoryPatchConfig>& configs)
     {
         if (config.IsValid())
         {
-            HMODULE module = ::GetModuleHandleA(config.ModuleName.empty() ? nullptr : config.ModuleName.c_str());
+            const HMODULE module = GetModuleHandleA(config.ModuleName.empty() ? nullptr : config.ModuleName.c_str());
 
-            PatchMemory(module, config.SegmentName.c_str(), (const void*)config.Signature.data(), (const void*)config.NewBytes.data(), (int)config.NewBytes.size());
+            PatchMemory(module, config.SegmentName.c_str(), config.Signature.data(), config.NewBytes.data(), static_cast<int>(config.NewBytes.size()));
         }
     }
 }
@@ -310,31 +254,32 @@ std::string LoadTextResource(int resourceId)
     HMODULE hModule = nullptr;
     GetModuleHandleEx(
         GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
-        (LPCTSTR)LoadTextResource,
+        reinterpret_cast<LPCTSTR>(LoadTextResource),
         &hModule);
 
-    HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(resourceId), TEXT("TXT"));
+    const HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(resourceId), TEXT("TXT"));
     if (hResource == nullptr)
     {
         return "";
     }
 
 
-    HGLOBAL hMemory = LoadResource(hModule, hResource);
+    const HGLOBAL hMemory = LoadResource(hModule, hResource);
     if (hMemory == nullptr)
     {
         return "";
     }
 
-    DWORD dwSize = SizeofResource(hModule, hResource);
-    LPVOID lpAddress = LockResource(hMemory);
+    const DWORD dwSize = SizeofResource(hModule, hResource);
+    const auto lpAddress = LockResource(hMemory);
 
-    return std::string((char*)lpAddress, dwSize);
+    // ReSharper disable once CppReinterpretCastFromVoidPtr
+    return std::string(reinterpret_cast<char*>(lpAddress), dwSize);  // NOLINT(modernize-return-braced-init-list)
 }
 
 std::vector<MemoryPatchConfig> LoadConfigurations(int resourceId)
 {
-    std::string str = LoadTextResource(resourceId);
+    const std::string str = LoadTextResource(resourceId);
 
     MemoryPatchConfigParser parser(str.c_str());
 
@@ -346,7 +291,7 @@ std::string LoadFileConfigText()
     HMODULE hModule = nullptr;
     GetModuleHandleEx(
         GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
-        (LPCTSTR)LoadFileConfigText,
+        reinterpret_cast<LPCTSTR>(LoadFileConfigText),
         &hModule);
 
     TCHAR ModulePath[MAX_PATH];
@@ -354,7 +299,7 @@ std::string LoadFileConfigText()
 
     std::basic_string<TCHAR> strPath = ModulePath;
 
-    size_t pos = strPath.find_last_of(TEXT("."));
+    const size_t pos = strPath.find_last_of(TEXT("."));
     if (pos != std::string::npos)
     {
         strPath = strPath.substr(0, pos);
@@ -367,23 +312,23 @@ std::string LoadFileConfigText()
 
 std::string LoadFileContent(const TCHAR* path)
 {
-    HANDLE hFile = CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    const HANDLE hFile = CreateFile(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (hFile == INVALID_HANDLE_VALUE)
     {
         return "";
     }
 
 
-    DWORD fileSize = GetFileSize(hFile, NULL);
+    const DWORD fileSize = GetFileSize(hFile, nullptr);
     if (fileSize == INVALID_FILE_SIZE)
     {
         CloseHandle(hFile);
         return "";
     }
 
-    char* buffer = new char[fileSize + 1];
+    const auto buffer = new char[fileSize + 1];
     DWORD bytesRead;
-    if (!ReadFile(hFile, buffer, fileSize, &bytesRead, NULL) || bytesRead != fileSize)
+    if (!ReadFile(hFile, buffer, fileSize, &bytesRead, nullptr) || bytesRead != fileSize)
     {
         delete[] buffer;
         CloseHandle(hFile);
@@ -401,7 +346,7 @@ std::string LoadFileContent(const TCHAR* path)
 
 std::vector<MemoryPatchConfig> LoadFileConfigurations()
 {
-    std::string str = LoadFileConfigText();
+    const auto str = LoadFileConfigText();
 
     MemoryPatchConfigParser parser(str.c_str());
 
