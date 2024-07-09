@@ -33,13 +33,13 @@ namespace AHeadLib.Net
         #region C++ Libs
         private void WriteCppTemplates()
         {
-            WriteComonUtilFile(Path.Combine(Directory, "Utils/MiniTools.h"), Properties.Resources.MiniTools_h);
-            WriteComonUtilFile(Path.Combine(Directory, "Utils/MiniTools.cpp"), Properties.Resources.MiniTools_cpp);
-            WriteComonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.h"), Properties.Resources.MemoryPatchConfig_h);
-            WriteComonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.cpp"), Properties.Resources.MemoryPatchConfig_cpp);
+            WriteCommonUtilFile(Path.Combine(Directory, "Utils/MiniTools.h"), Properties.Resources.MiniTools_h);
+            WriteCommonUtilFile(Path.Combine(Directory, "Utils/MiniTools.cpp"), Properties.Resources.MiniTools_cpp);
+            WriteCommonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.h"), Properties.Resources.MemoryPatchConfig_h);
+            WriteCommonUtilFile(Path.Combine(Directory, "Utils/MemoryPatchConfig.cpp"), Properties.Resources.MemoryPatchConfig_cpp);
 
-            WriteComonUtilFile(Path.Combine(Directory, "GeneratedFiles/BuiltinImplementations.cpp"), Properties.Resources.BuiltinImplementations);
-            WriteComonUtilFile(Path.Combine(Directory, "UserFiles/UserImplementations.cpp"), Properties.Resources.UserImplementations);
+            WriteCommonUtilFile(Path.Combine(Directory, "GeneratedFiles/BuiltinImplementations.cpp"), Properties.Resources.BuiltinImplementations);
+            WriteCommonUtilFile(Path.Combine(Directory, "UserFiles/UserImplementations.cpp"), Properties.Resources.UserImplementations);
         }
         #endregion
 
@@ -47,22 +47,24 @@ namespace AHeadLib.Net
 
         private void WriteCpp()
         {
-            CodeWriter writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + ".c"));
+            var writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + ".cpp"));
 
-            string exportedPointers = string.Join(Environment.NewLine, Methods.Select(x => $"void* {x}Ptr = NULL;"));
-            string exportedFunctions = string.Join(Environment.NewLine, Methods.Select(x => $"extern void WINAPI ASM_{x}();"));
-            string exportedLinker = string.Join(Environment.NewLine, Methods.Select(x =>
+            var exportedPointers = string.Join(Environment.NewLine, Methods.Select(x => $"extern \"C\" void* {x}Ptr = nullptr;"));
+            
+            // ReSharper disable once StringLiteralTypo
+            var exportedFunctions = string.Join(Environment.NewLine, Methods.Select(x => $"extern \"C\" void WINAPI ASM_{x}();"));
+            var exportedLinker = string.Join(Environment.NewLine, Methods.Select(x =>
             {
                 return 
-                $"#if __X64_BUILD__\n" +
+                $"#if AHEAD_LIB_DOT_NET_X64_BUILD\n" +
                 $"#pragma comment(linker, \"/EXPORT:{x}=ASM_{x}\")\n" +
                 $"#else\n" +
                 $"#pragma comment(linker, \"/EXPORT:{x}=_ASM_{x}@8\")\n" +
                 $"#endif";
             }));
-            string bindPointers = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"{x}Ptr = __CheckedGetFunction(module, \"{x}\");"));
+            var bindPointers = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"AHEAD_LIB_DOT_NET_BIND_FUNCTION({x});"));
 
-            string cppCode = Properties.Resources.CppHelper;
+            var cppCode = Properties.Resources.CppHelper;
             cppCode = cppCode.Replace("// ${EXPORTED_POINTERS}", exportedPointers);
             cppCode = cppCode.Replace("// ${EXPORTED_FUNCTIONS}", exportedFunctions);
             cppCode = cppCode.Replace("${LIBRARY_NAME}", Name);
@@ -73,7 +75,7 @@ namespace AHeadLib.Net
             writer.WriteNewLine();
             writer.Save();
 
-            CodeWriter mainWriter = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_DllMain.c"));
+            var mainWriter = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_DllMain.cpp"));
 
             mainWriter.Write(Properties.Resources.DllMain);
             mainWriter.Save();
@@ -84,11 +86,11 @@ namespace AHeadLib.Net
         private void WriteAsm()
         {
             {
-                CodeWriter x86Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x86.asm"));
+                var x86Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x86.asm"));
 
-                StringBuilder builder = new StringBuilder();
-                string externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF _{x}Ptr:DWORD"));
-                string funcs = string.Join(Environment.NewLine, Methods.Select(x =>
+                var builder = new StringBuilder();
+                var externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF _{x}Ptr:DWORD"));
+                var funcs = string.Join(Environment.NewLine, Methods.Select(x =>
                 {
                     builder.Clear();
                     builder.AppendLine($"_ASM_{x}@8 PROC");
@@ -98,7 +100,7 @@ namespace AHeadLib.Net
                     return builder.ToString();
                 }));
 
-                string asmCode = Properties.Resources.Asm_x86;
+                var asmCode = Properties.Resources.Asm_x86;
                 asmCode = asmCode.Replace("${EXTERNDEF_POINTERS}", externDefs);
                 asmCode = asmCode.Replace("${FUNCTIONS}", funcs);
 
@@ -107,11 +109,11 @@ namespace AHeadLib.Net
             }
 
             {
-                CodeWriter x64Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x64.asm"));
+                var x64Writer = new CodeWriter(Path.Combine(Directory, "GeneratedFiles", Path.GetFileNameWithoutExtension(Name) + "_x64.asm"));
 
-                StringBuilder builder = new StringBuilder();
-                string externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF {x}Ptr:QWORD"));
-                string funcs = string.Join(Environment.NewLine, Methods.Select(x =>
+                var builder = new StringBuilder();
+                var externDefs = string.Join(Environment.NewLine + "    ", Methods.Select(x => $"EXTERNDEF {x}Ptr:QWORD"));
+                var funcs = string.Join(Environment.NewLine, Methods.Select(x =>
                 {
                     builder.Clear();
                     builder.AppendLine($"ASM_{x} PROC");
@@ -121,7 +123,7 @@ namespace AHeadLib.Net
                     return builder.ToString();
                 }));
 
-                string asmCode = Properties.Resources.Asm_x64;
+                var asmCode = Properties.Resources.Asm_x64;
                 asmCode = asmCode.Replace("${EXTERNDEF_POINTERS}", externDefs);
                 asmCode = asmCode.Replace("${FUNCTIONS}", funcs);
 
@@ -134,9 +136,9 @@ namespace AHeadLib.Net
         #region Common Files
         private void WriteBinaryCodeFile(string name, byte[] bytes)
         {
-            CodeWriter wirter = new CodeWriter(name);
+            var wirter = new CodeWriter(name);
 
-            string codes = Encoding.UTF8.GetString(bytes);
+            var codes = Encoding.UTF8.GetString(bytes);
             codes = codes.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
 
             wirter.Write(codes);
@@ -145,7 +147,7 @@ namespace AHeadLib.Net
 
         private void WriteTextCodeFile(string name, string text)
         {
-            CodeWriter writer = new CodeWriter(name);
+            var writer = new CodeWriter(name);
 
             text = text.Replace("${LIB_NAME}", Path.GetFileNameWithoutExtension(Name));
 
@@ -153,9 +155,9 @@ namespace AHeadLib.Net
             writer.Save();
         }
 
-        private void WriteComonUtilFile(string name, string text)
+        private static void WriteCommonUtilFile(string name, string text)
         {
-            CodeWriter writer = new CodeWriter(name);
+            var writer = new CodeWriter(name);
 
             writer.Write(text);
             writer.Save();

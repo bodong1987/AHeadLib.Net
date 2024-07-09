@@ -29,8 +29,8 @@
         </MASM>
     </ItemGroup>
     <ItemGroup>
-        <ClCompile Include="GeneratedFiles/${LIB_NAME}_DllMain.c" />
-        <ClCompile Include="GeneratedFiles/${LIB_NAME}.c" />
+        <ClCompile Include="GeneratedFiles/${LIB_NAME}_DllMain.cpp" />
+        <ClCompile Include="GeneratedFiles/${LIB_NAME}.cpp" />
         <ClCompile Include="GeneratedFiles/BuiltinImplementations.cpp" />
         <ClCompile Include="Utils/MemoryPatchConfig.cpp" />
         <ClCompile Include="Utils/MiniTools.cpp" />

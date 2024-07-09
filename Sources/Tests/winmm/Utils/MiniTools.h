@@ -35,9 +35,9 @@
 #define DISABLE_REPORT_ERROR_BY_MESSAGEBOX 0
 
 #if DISABLE_REPORT_ERROR_BY_MESSAGEBOX
-#define ShowMessageBox(...) 
+#define AHEAD_LIB_SHOW_MESSAGE_BOX(...) 
 #else
-#define ShowMessageBox(...) MessageBox(__VA_ARGS__)
+#define AHEAD_LIB_SHOW_MESSAGE_BOX(...) MessageBox(__VA_ARGS__)
 #endif
 
 G_BEGIN_DECLS

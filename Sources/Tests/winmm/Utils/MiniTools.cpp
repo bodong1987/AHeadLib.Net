@@ -16,7 +16,7 @@ BOOL ReplaceMemory(void* dest, const void* source, int length)
     DWORD oldProtect;
     if (!VirtualProtect(TargetAddress, length, PAGE_EXECUTE_READWRITE, &oldProtect))
     {
-        ShowMessageBox(0, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
+        AHEAD_LIB_SHOW_MESSAGE_BOX(0, TEXT("Failed to obtain write permission for target address"), TEXT("Error"), 0);
 
         return FALSE;
     }
@@ -26,7 +26,7 @@ BOOL ReplaceMemory(void* dest, const void* source, int length)
     if (!VirtualProtect(TargetAddress, length, oldProtect, &oldProtect))
     {
         // error
-        ShowMessageBox(0, TEXT("Failed write code."), TEXT("Error"), 0);
+        AHEAD_LIB_SHOW_MESSAGE_BOX(0, TEXT("Failed write code."), TEXT("Error"), 0);
         return FALSE;
     }
 

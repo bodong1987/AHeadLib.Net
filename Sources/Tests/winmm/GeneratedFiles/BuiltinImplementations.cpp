@@ -31,7 +31,7 @@ extern "C"
     }
 
     // apply patches based on resource text files
-    void __ApplyBuiltinPatches()
+    void ApplyBuiltinPatches()
     {
         __ApplyResourceBasedPatches();
         __ApplyFileBasedPatches();

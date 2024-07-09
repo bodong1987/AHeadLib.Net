@@ -128,10 +128,10 @@
     <value>Templates\BuiltinImplementations.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="CppHelper" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Templates/CppHelper.c;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>Templates/CppHelper.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="DllMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Templates/DllMain.c;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>Templates/DllMain.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="MemoryPatchConfig_cpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>CppLibs\MemoryPatchConfig.cpp;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>

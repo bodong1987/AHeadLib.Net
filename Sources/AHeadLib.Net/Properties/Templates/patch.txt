@@ -2,9 +2,9 @@
 ;
 ; use ; start a comment line
 ;library : dll name with .dll extension or 0, 0 is the main module
-;segenemnt : segment name, eg: .text|.data
-;signature : hex byte value sequence, splitted by space
-;newBytes : hex byte value sequence, splitted by space
+;segment : segment name, eg: .text|.data
+;signature : hex byte value sequence, split by space
+;newBytes : hex byte value sequence, split by space
 
 ; for example:
 ;library    : 0

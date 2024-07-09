@@ -5,14 +5,12 @@
 
 #include "MemoryPatchConfig.h"
 #include "resource.h"
-#include <cassert>
-#include <string>
 
-extern "C"
+namespace
 {
-    static void __ApplyResourceBasedPatches()
+    void ApplyResourceBasedPatches()
     {
-        auto configs = LoadConfigurations(IDR_TXT2);
+        const auto configs = LoadConfigurations(IDR_TXT2);
 
         if (!configs.empty())
         {
@@ -20,20 +18,21 @@ extern "C"
         }
     }
 
-    static void __ApplyFileBasedPatches()
+    void ApplyFileBasedPatches()
     {
-        auto configs = LoadFileConfigurations();
+        const auto configs = LoadFileConfigurations();
 
         if (!configs.empty())
         {
             PatchMemoryWithConfig(configs);
         }
-    }
+    }    
+}
 
-    // apply patches based on resource text files
-    void __ApplyBuiltinPatches()
-    {
-        __ApplyResourceBasedPatches();
-        __ApplyFileBasedPatches();
-    }
+
+// apply patches based on resource text files
+void ApplyBuiltinPatches()
+{
+    ApplyResourceBasedPatches();
+    ApplyFileBasedPatches();
 }

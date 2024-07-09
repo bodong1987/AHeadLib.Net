@@ -5,10 +5,10 @@
 
 #include <windows.h>
 
-extern void __CheckedLoad();
-extern void __ApplyBuiltinPatches();
-extern void __ExecuteUserCutomCodes();
-extern int __CheckShouldExecuteAttachCode();
+extern void CheckedLoad();
+extern void ApplyBuiltinPatches();
+extern void ExecuteUserCustomCodes();
+extern int ShouldExecuteAttachCode();
 
 BOOL WINAPI DllMain(
     HINSTANCE hinstDLL,  // handle to DLL module
@@ -21,15 +21,15 @@ BOOL WINAPI DllMain(
     case DLL_PROCESS_ATTACH:
         // Initialize once for each new process.
         // Return FALSE to fail DLL load.
-        __CheckedLoad();
+        CheckedLoad();
 
-        if (__CheckShouldExecuteAttachCode() > 0)
+        if (ShouldExecuteAttachCode() > 0)
         {
             // apply internal patches
-            __ApplyBuiltinPatches();
+            ApplyBuiltinPatches();
 
             // apply user custom codes
-            __ExecuteUserCutomCodes();
+            ExecuteUserCustomCodes();
         }
 
         break;

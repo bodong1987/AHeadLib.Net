@@ -22,6 +22,18 @@ namespace AHeadLib.Net
             // for test only...
             buttonEdit_InputFile.Text = "C:\\Windows\\System32\\winmm.dll";
             buttonEdit_OutputDirectory.Text = "E:\\Desktop\\New Folder";
+
+            try
+            {
+                if (!Directory.Exists(buttonEdit_OutputDirectory.Text))
+                {
+                    Directory.CreateDirectory(buttonEdit_OutputDirectory.Text);
+                }
+            }
+            catch
+            {
+                // ignored
+            }
 #endif
             var filePath = Assembly.GetExecutingAssembly().Location;
 

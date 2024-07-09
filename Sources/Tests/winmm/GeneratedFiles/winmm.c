@@ -7,13 +7,13 @@
 #include "MiniTools.h"
 
 #if defined(_WIN64) || defined(_X64) || defined(WIN64) || defined( __LP64__ )
-#define __X64_BUILD__ 1
+#define AHEAD_LIB_DOT_NET_X64_BUILD 1
 #else
-#define __X64_BUILD__ 0
+#define AHEAD_LIB_DOT_NET_X64_BUILD 0
 #endif
 
 // checked get function in native dll
-static void* __CheckedGetFunction(HMODULE module, const char* methodName)
+static void* CheckedGetFunction(HMODULE module, const char* methodName)
 {
     void* Result = GetProcAddress(module, methodName);
 
@@ -395,915 +395,915 @@ extern void WINAPI ASM_waveOutSetVolume();
 extern void WINAPI ASM_waveOutUnprepareHeader();
 extern void WINAPI ASM_waveOutWrite();
 
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:CloseDriver=ASM_CloseDriver")
 #else
 #pragma comment(linker, "/EXPORT:CloseDriver=_ASM_CloseDriver@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:DefDriverProc=ASM_DefDriverProc")
 #else
 #pragma comment(linker, "/EXPORT:DefDriverProc=_ASM_DefDriverProc@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:DriverCallback=ASM_DriverCallback")
 #else
 #pragma comment(linker, "/EXPORT:DriverCallback=_ASM_DriverCallback@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:DrvGetModuleHandle=ASM_DrvGetModuleHandle")
 #else
 #pragma comment(linker, "/EXPORT:DrvGetModuleHandle=_ASM_DrvGetModuleHandle@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:GetDriverModuleHandle=ASM_GetDriverModuleHandle")
 #else
 #pragma comment(linker, "/EXPORT:GetDriverModuleHandle=_ASM_GetDriverModuleHandle@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:OpenDriver=ASM_OpenDriver")
 #else
 #pragma comment(linker, "/EXPORT:OpenDriver=_ASM_OpenDriver@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:PlaySound=ASM_PlaySound")
 #else
 #pragma comment(linker, "/EXPORT:PlaySound=_ASM_PlaySound@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:PlaySoundA=ASM_PlaySoundA")
 #else
 #pragma comment(linker, "/EXPORT:PlaySoundA=_ASM_PlaySoundA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:PlaySoundW=ASM_PlaySoundW")
 #else
 #pragma comment(linker, "/EXPORT:PlaySoundW=_ASM_PlaySoundW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:SendDriverMessage=ASM_SendDriverMessage")
 #else
 #pragma comment(linker, "/EXPORT:SendDriverMessage=_ASM_SendDriverMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:WOWAppExit=ASM_WOWAppExit")
 #else
 #pragma comment(linker, "/EXPORT:WOWAppExit=_ASM_WOWAppExit@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxGetDevCapsA=ASM_auxGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:auxGetDevCapsA=_ASM_auxGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxGetDevCapsW=ASM_auxGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:auxGetDevCapsW=_ASM_auxGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxGetNumDevs=ASM_auxGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:auxGetNumDevs=_ASM_auxGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxGetVolume=ASM_auxGetVolume")
 #else
 #pragma comment(linker, "/EXPORT:auxGetVolume=_ASM_auxGetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxOutMessage=ASM_auxOutMessage")
 #else
 #pragma comment(linker, "/EXPORT:auxOutMessage=_ASM_auxOutMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:auxSetVolume=ASM_auxSetVolume")
 #else
 #pragma comment(linker, "/EXPORT:auxSetVolume=_ASM_auxSetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyConfigChanged=ASM_joyConfigChanged")
 #else
 #pragma comment(linker, "/EXPORT:joyConfigChanged=_ASM_joyConfigChanged@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetDevCapsA=ASM_joyGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:joyGetDevCapsA=_ASM_joyGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetDevCapsW=ASM_joyGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:joyGetDevCapsW=_ASM_joyGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetNumDevs=ASM_joyGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:joyGetNumDevs=_ASM_joyGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetPos=ASM_joyGetPos")
 #else
 #pragma comment(linker, "/EXPORT:joyGetPos=_ASM_joyGetPos@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetPosEx=ASM_joyGetPosEx")
 #else
 #pragma comment(linker, "/EXPORT:joyGetPosEx=_ASM_joyGetPosEx@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyGetThreshold=ASM_joyGetThreshold")
 #else
 #pragma comment(linker, "/EXPORT:joyGetThreshold=_ASM_joyGetThreshold@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joyReleaseCapture=ASM_joyReleaseCapture")
 #else
 #pragma comment(linker, "/EXPORT:joyReleaseCapture=_ASM_joyReleaseCapture@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joySetCapture=ASM_joySetCapture")
 #else
 #pragma comment(linker, "/EXPORT:joySetCapture=_ASM_joySetCapture@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:joySetThreshold=ASM_joySetThreshold")
 #else
 #pragma comment(linker, "/EXPORT:joySetThreshold=_ASM_joySetThreshold@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciDriverNotify=ASM_mciDriverNotify")
 #else
 #pragma comment(linker, "/EXPORT:mciDriverNotify=_ASM_mciDriverNotify@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciDriverYield=ASM_mciDriverYield")
 #else
 #pragma comment(linker, "/EXPORT:mciDriverYield=_ASM_mciDriverYield@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciExecute=ASM_mciExecute")
 #else
 #pragma comment(linker, "/EXPORT:mciExecute=_ASM_mciExecute@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciFreeCommandResource=ASM_mciFreeCommandResource")
 #else
 #pragma comment(linker, "/EXPORT:mciFreeCommandResource=_ASM_mciFreeCommandResource@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetCreatorTask=ASM_mciGetCreatorTask")
 #else
 #pragma comment(linker, "/EXPORT:mciGetCreatorTask=_ASM_mciGetCreatorTask@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDA=ASM_mciGetDeviceIDA")
 #else
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDA=_ASM_mciGetDeviceIDA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDFromElementIDA=ASM_mciGetDeviceIDFromElementIDA")
 #else
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDFromElementIDA=_ASM_mciGetDeviceIDFromElementIDA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDFromElementIDW=ASM_mciGetDeviceIDFromElementIDW")
 #else
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDFromElementIDW=_ASM_mciGetDeviceIDFromElementIDW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDW=ASM_mciGetDeviceIDW")
 #else
 #pragma comment(linker, "/EXPORT:mciGetDeviceIDW=_ASM_mciGetDeviceIDW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetDriverData=ASM_mciGetDriverData")
 #else
 #pragma comment(linker, "/EXPORT:mciGetDriverData=_ASM_mciGetDriverData@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetErrorStringA=ASM_mciGetErrorStringA")
 #else
 #pragma comment(linker, "/EXPORT:mciGetErrorStringA=_ASM_mciGetErrorStringA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetErrorStringW=ASM_mciGetErrorStringW")
 #else
 #pragma comment(linker, "/EXPORT:mciGetErrorStringW=_ASM_mciGetErrorStringW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciGetYieldProc=ASM_mciGetYieldProc")
 #else
 #pragma comment(linker, "/EXPORT:mciGetYieldProc=_ASM_mciGetYieldProc@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciLoadCommandResource=ASM_mciLoadCommandResource")
 #else
 #pragma comment(linker, "/EXPORT:mciLoadCommandResource=_ASM_mciLoadCommandResource@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSendCommandA=ASM_mciSendCommandA")
 #else
 #pragma comment(linker, "/EXPORT:mciSendCommandA=_ASM_mciSendCommandA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSendCommandW=ASM_mciSendCommandW")
 #else
 #pragma comment(linker, "/EXPORT:mciSendCommandW=_ASM_mciSendCommandW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSendStringA=ASM_mciSendStringA")
 #else
 #pragma comment(linker, "/EXPORT:mciSendStringA=_ASM_mciSendStringA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSendStringW=ASM_mciSendStringW")
 #else
 #pragma comment(linker, "/EXPORT:mciSendStringW=_ASM_mciSendStringW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSetDriverData=ASM_mciSetDriverData")
 #else
 #pragma comment(linker, "/EXPORT:mciSetDriverData=_ASM_mciSetDriverData@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mciSetYieldProc=ASM_mciSetYieldProc")
 #else
 #pragma comment(linker, "/EXPORT:mciSetYieldProc=_ASM_mciSetYieldProc@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiConnect=ASM_midiConnect")
 #else
 #pragma comment(linker, "/EXPORT:midiConnect=_ASM_midiConnect@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiDisconnect=ASM_midiDisconnect")
 #else
 #pragma comment(linker, "/EXPORT:midiDisconnect=_ASM_midiDisconnect@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInAddBuffer=ASM_midiInAddBuffer")
 #else
 #pragma comment(linker, "/EXPORT:midiInAddBuffer=_ASM_midiInAddBuffer@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInClose=ASM_midiInClose")
 #else
 #pragma comment(linker, "/EXPORT:midiInClose=_ASM_midiInClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetDevCapsA=ASM_midiInGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetDevCapsA=_ASM_midiInGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetDevCapsW=ASM_midiInGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetDevCapsW=_ASM_midiInGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetErrorTextA=ASM_midiInGetErrorTextA")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetErrorTextA=_ASM_midiInGetErrorTextA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetErrorTextW=ASM_midiInGetErrorTextW")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetErrorTextW=_ASM_midiInGetErrorTextW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetID=ASM_midiInGetID")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetID=_ASM_midiInGetID@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInGetNumDevs=ASM_midiInGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:midiInGetNumDevs=_ASM_midiInGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInMessage=ASM_midiInMessage")
 #else
 #pragma comment(linker, "/EXPORT:midiInMessage=_ASM_midiInMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInOpen=ASM_midiInOpen")
 #else
 #pragma comment(linker, "/EXPORT:midiInOpen=_ASM_midiInOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInPrepareHeader=ASM_midiInPrepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:midiInPrepareHeader=_ASM_midiInPrepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInReset=ASM_midiInReset")
 #else
 #pragma comment(linker, "/EXPORT:midiInReset=_ASM_midiInReset@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInStart=ASM_midiInStart")
 #else
 #pragma comment(linker, "/EXPORT:midiInStart=_ASM_midiInStart@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInStop=ASM_midiInStop")
 #else
 #pragma comment(linker, "/EXPORT:midiInStop=_ASM_midiInStop@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiInUnprepareHeader=ASM_midiInUnprepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:midiInUnprepareHeader=_ASM_midiInUnprepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutCacheDrumPatches=ASM_midiOutCacheDrumPatches")
 #else
 #pragma comment(linker, "/EXPORT:midiOutCacheDrumPatches=_ASM_midiOutCacheDrumPatches@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutCachePatches=ASM_midiOutCachePatches")
 #else
 #pragma comment(linker, "/EXPORT:midiOutCachePatches=_ASM_midiOutCachePatches@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutClose=ASM_midiOutClose")
 #else
 #pragma comment(linker, "/EXPORT:midiOutClose=_ASM_midiOutClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetDevCapsA=ASM_midiOutGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetDevCapsA=_ASM_midiOutGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetDevCapsW=ASM_midiOutGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetDevCapsW=_ASM_midiOutGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetErrorTextA=ASM_midiOutGetErrorTextA")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetErrorTextA=_ASM_midiOutGetErrorTextA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetErrorTextW=ASM_midiOutGetErrorTextW")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetErrorTextW=_ASM_midiOutGetErrorTextW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetID=ASM_midiOutGetID")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetID=_ASM_midiOutGetID@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetNumDevs=ASM_midiOutGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetNumDevs=_ASM_midiOutGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutGetVolume=ASM_midiOutGetVolume")
 #else
 #pragma comment(linker, "/EXPORT:midiOutGetVolume=_ASM_midiOutGetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutLongMsg=ASM_midiOutLongMsg")
 #else
 #pragma comment(linker, "/EXPORT:midiOutLongMsg=_ASM_midiOutLongMsg@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutMessage=ASM_midiOutMessage")
 #else
 #pragma comment(linker, "/EXPORT:midiOutMessage=_ASM_midiOutMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutOpen=ASM_midiOutOpen")
 #else
 #pragma comment(linker, "/EXPORT:midiOutOpen=_ASM_midiOutOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutPrepareHeader=ASM_midiOutPrepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:midiOutPrepareHeader=_ASM_midiOutPrepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutReset=ASM_midiOutReset")
 #else
 #pragma comment(linker, "/EXPORT:midiOutReset=_ASM_midiOutReset@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutSetVolume=ASM_midiOutSetVolume")
 #else
 #pragma comment(linker, "/EXPORT:midiOutSetVolume=_ASM_midiOutSetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutShortMsg=ASM_midiOutShortMsg")
 #else
 #pragma comment(linker, "/EXPORT:midiOutShortMsg=_ASM_midiOutShortMsg@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiOutUnprepareHeader=ASM_midiOutUnprepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:midiOutUnprepareHeader=_ASM_midiOutUnprepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamClose=ASM_midiStreamClose")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamClose=_ASM_midiStreamClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamOpen=ASM_midiStreamOpen")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamOpen=_ASM_midiStreamOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamOut=ASM_midiStreamOut")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamOut=_ASM_midiStreamOut@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamPause=ASM_midiStreamPause")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamPause=_ASM_midiStreamPause@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamPosition=ASM_midiStreamPosition")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamPosition=_ASM_midiStreamPosition@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamProperty=ASM_midiStreamProperty")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamProperty=_ASM_midiStreamProperty@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamRestart=ASM_midiStreamRestart")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamRestart=_ASM_midiStreamRestart@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:midiStreamStop=ASM_midiStreamStop")
 #else
 #pragma comment(linker, "/EXPORT:midiStreamStop=_ASM_midiStreamStop@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerClose=ASM_mixerClose")
 #else
 #pragma comment(linker, "/EXPORT:mixerClose=_ASM_mixerClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetControlDetailsA=ASM_mixerGetControlDetailsA")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetControlDetailsA=_ASM_mixerGetControlDetailsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetControlDetailsW=ASM_mixerGetControlDetailsW")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetControlDetailsW=_ASM_mixerGetControlDetailsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetDevCapsA=ASM_mixerGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetDevCapsA=_ASM_mixerGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetDevCapsW=ASM_mixerGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetDevCapsW=_ASM_mixerGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetID=ASM_mixerGetID")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetID=_ASM_mixerGetID@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetLineControlsA=ASM_mixerGetLineControlsA")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetLineControlsA=_ASM_mixerGetLineControlsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetLineControlsW=ASM_mixerGetLineControlsW")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetLineControlsW=_ASM_mixerGetLineControlsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetLineInfoA=ASM_mixerGetLineInfoA")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetLineInfoA=_ASM_mixerGetLineInfoA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetLineInfoW=ASM_mixerGetLineInfoW")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetLineInfoW=_ASM_mixerGetLineInfoW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerGetNumDevs=ASM_mixerGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:mixerGetNumDevs=_ASM_mixerGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerMessage=ASM_mixerMessage")
 #else
 #pragma comment(linker, "/EXPORT:mixerMessage=_ASM_mixerMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerOpen=ASM_mixerOpen")
 #else
 #pragma comment(linker, "/EXPORT:mixerOpen=_ASM_mixerOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mixerSetControlDetails=ASM_mixerSetControlDetails")
 #else
 #pragma comment(linker, "/EXPORT:mixerSetControlDetails=_ASM_mixerSetControlDetails@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmDrvInstall=ASM_mmDrvInstall")
 #else
 #pragma comment(linker, "/EXPORT:mmDrvInstall=_ASM_mmDrvInstall@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmGetCurrentTask=ASM_mmGetCurrentTask")
 #else
 #pragma comment(linker, "/EXPORT:mmGetCurrentTask=_ASM_mmGetCurrentTask@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmTaskBlock=ASM_mmTaskBlock")
 #else
 #pragma comment(linker, "/EXPORT:mmTaskBlock=_ASM_mmTaskBlock@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmTaskCreate=ASM_mmTaskCreate")
 #else
 #pragma comment(linker, "/EXPORT:mmTaskCreate=_ASM_mmTaskCreate@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmTaskSignal=ASM_mmTaskSignal")
 #else
 #pragma comment(linker, "/EXPORT:mmTaskSignal=_ASM_mmTaskSignal@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmTaskYield=ASM_mmTaskYield")
 #else
 #pragma comment(linker, "/EXPORT:mmTaskYield=_ASM_mmTaskYield@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioAdvance=ASM_mmioAdvance")
 #else
 #pragma comment(linker, "/EXPORT:mmioAdvance=_ASM_mmioAdvance@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioAscend=ASM_mmioAscend")
 #else
 #pragma comment(linker, "/EXPORT:mmioAscend=_ASM_mmioAscend@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioClose=ASM_mmioClose")
 #else
 #pragma comment(linker, "/EXPORT:mmioClose=_ASM_mmioClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioCreateChunk=ASM_mmioCreateChunk")
 #else
 #pragma comment(linker, "/EXPORT:mmioCreateChunk=_ASM_mmioCreateChunk@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioDescend=ASM_mmioDescend")
 #else
 #pragma comment(linker, "/EXPORT:mmioDescend=_ASM_mmioDescend@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioFlush=ASM_mmioFlush")
 #else
 #pragma comment(linker, "/EXPORT:mmioFlush=_ASM_mmioFlush@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioGetInfo=ASM_mmioGetInfo")
 #else
 #pragma comment(linker, "/EXPORT:mmioGetInfo=_ASM_mmioGetInfo@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioInstallIOProcA=ASM_mmioInstallIOProcA")
 #else
 #pragma comment(linker, "/EXPORT:mmioInstallIOProcA=_ASM_mmioInstallIOProcA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioInstallIOProcW=ASM_mmioInstallIOProcW")
 #else
 #pragma comment(linker, "/EXPORT:mmioInstallIOProcW=_ASM_mmioInstallIOProcW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioOpenA=ASM_mmioOpenA")
 #else
 #pragma comment(linker, "/EXPORT:mmioOpenA=_ASM_mmioOpenA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioOpenW=ASM_mmioOpenW")
 #else
 #pragma comment(linker, "/EXPORT:mmioOpenW=_ASM_mmioOpenW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioRead=ASM_mmioRead")
 #else
 #pragma comment(linker, "/EXPORT:mmioRead=_ASM_mmioRead@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioRenameA=ASM_mmioRenameA")
 #else
 #pragma comment(linker, "/EXPORT:mmioRenameA=_ASM_mmioRenameA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioRenameW=ASM_mmioRenameW")
 #else
 #pragma comment(linker, "/EXPORT:mmioRenameW=_ASM_mmioRenameW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioSeek=ASM_mmioSeek")
 #else
 #pragma comment(linker, "/EXPORT:mmioSeek=_ASM_mmioSeek@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioSendMessage=ASM_mmioSendMessage")
 #else
 #pragma comment(linker, "/EXPORT:mmioSendMessage=_ASM_mmioSendMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioSetBuffer=ASM_mmioSetBuffer")
 #else
 #pragma comment(linker, "/EXPORT:mmioSetBuffer=_ASM_mmioSetBuffer@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioSetInfo=ASM_mmioSetInfo")
 #else
 #pragma comment(linker, "/EXPORT:mmioSetInfo=_ASM_mmioSetInfo@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioStringToFOURCCA=ASM_mmioStringToFOURCCA")
 #else
 #pragma comment(linker, "/EXPORT:mmioStringToFOURCCA=_ASM_mmioStringToFOURCCA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioStringToFOURCCW=ASM_mmioStringToFOURCCW")
 #else
 #pragma comment(linker, "/EXPORT:mmioStringToFOURCCW=_ASM_mmioStringToFOURCCW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmioWrite=ASM_mmioWrite")
 #else
 #pragma comment(linker, "/EXPORT:mmioWrite=_ASM_mmioWrite@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:mmsystemGetVersion=ASM_mmsystemGetVersion")
 #else
 #pragma comment(linker, "/EXPORT:mmsystemGetVersion=_ASM_mmsystemGetVersion@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:sndPlaySoundA=ASM_sndPlaySoundA")
 #else
 #pragma comment(linker, "/EXPORT:sndPlaySoundA=_ASM_sndPlaySoundA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:sndPlaySoundW=ASM_sndPlaySoundW")
 #else
 #pragma comment(linker, "/EXPORT:sndPlaySoundW=_ASM_sndPlaySoundW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeBeginPeriod=ASM_timeBeginPeriod")
 #else
 #pragma comment(linker, "/EXPORT:timeBeginPeriod=_ASM_timeBeginPeriod@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeEndPeriod=ASM_timeEndPeriod")
 #else
 #pragma comment(linker, "/EXPORT:timeEndPeriod=_ASM_timeEndPeriod@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeGetDevCaps=ASM_timeGetDevCaps")
 #else
 #pragma comment(linker, "/EXPORT:timeGetDevCaps=_ASM_timeGetDevCaps@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeGetSystemTime=ASM_timeGetSystemTime")
 #else
 #pragma comment(linker, "/EXPORT:timeGetSystemTime=_ASM_timeGetSystemTime@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeGetTime=ASM_timeGetTime")
 #else
 #pragma comment(linker, "/EXPORT:timeGetTime=_ASM_timeGetTime@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeKillEvent=ASM_timeKillEvent")
 #else
 #pragma comment(linker, "/EXPORT:timeKillEvent=_ASM_timeKillEvent@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:timeSetEvent=ASM_timeSetEvent")
 #else
 #pragma comment(linker, "/EXPORT:timeSetEvent=_ASM_timeSetEvent@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInAddBuffer=ASM_waveInAddBuffer")
 #else
 #pragma comment(linker, "/EXPORT:waveInAddBuffer=_ASM_waveInAddBuffer@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInClose=ASM_waveInClose")
 #else
 #pragma comment(linker, "/EXPORT:waveInClose=_ASM_waveInClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetDevCapsA=ASM_waveInGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetDevCapsA=_ASM_waveInGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetDevCapsW=ASM_waveInGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetDevCapsW=_ASM_waveInGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetErrorTextA=ASM_waveInGetErrorTextA")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetErrorTextA=_ASM_waveInGetErrorTextA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetErrorTextW=ASM_waveInGetErrorTextW")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetErrorTextW=_ASM_waveInGetErrorTextW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetID=ASM_waveInGetID")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetID=_ASM_waveInGetID@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetNumDevs=ASM_waveInGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetNumDevs=_ASM_waveInGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInGetPosition=ASM_waveInGetPosition")
 #else
 #pragma comment(linker, "/EXPORT:waveInGetPosition=_ASM_waveInGetPosition@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInMessage=ASM_waveInMessage")
 #else
 #pragma comment(linker, "/EXPORT:waveInMessage=_ASM_waveInMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInOpen=ASM_waveInOpen")
 #else
 #pragma comment(linker, "/EXPORT:waveInOpen=_ASM_waveInOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInPrepareHeader=ASM_waveInPrepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:waveInPrepareHeader=_ASM_waveInPrepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInReset=ASM_waveInReset")
 #else
 #pragma comment(linker, "/EXPORT:waveInReset=_ASM_waveInReset@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInStart=ASM_waveInStart")
 #else
 #pragma comment(linker, "/EXPORT:waveInStart=_ASM_waveInStart@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInStop=ASM_waveInStop")
 #else
 #pragma comment(linker, "/EXPORT:waveInStop=_ASM_waveInStop@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveInUnprepareHeader=ASM_waveInUnprepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:waveInUnprepareHeader=_ASM_waveInUnprepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutBreakLoop=ASM_waveOutBreakLoop")
 #else
 #pragma comment(linker, "/EXPORT:waveOutBreakLoop=_ASM_waveOutBreakLoop@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutClose=ASM_waveOutClose")
 #else
 #pragma comment(linker, "/EXPORT:waveOutClose=_ASM_waveOutClose@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetDevCapsA=ASM_waveOutGetDevCapsA")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetDevCapsA=_ASM_waveOutGetDevCapsA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetDevCapsW=ASM_waveOutGetDevCapsW")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetDevCapsW=_ASM_waveOutGetDevCapsW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetErrorTextA=ASM_waveOutGetErrorTextA")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetErrorTextA=_ASM_waveOutGetErrorTextA@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetErrorTextW=ASM_waveOutGetErrorTextW")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetErrorTextW=_ASM_waveOutGetErrorTextW@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetID=ASM_waveOutGetID")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetID=_ASM_waveOutGetID@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetNumDevs=ASM_waveOutGetNumDevs")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetNumDevs=_ASM_waveOutGetNumDevs@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetPitch=ASM_waveOutGetPitch")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetPitch=_ASM_waveOutGetPitch@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetPlaybackRate=ASM_waveOutGetPlaybackRate")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetPlaybackRate=_ASM_waveOutGetPlaybackRate@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetPosition=ASM_waveOutGetPosition")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetPosition=_ASM_waveOutGetPosition@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutGetVolume=ASM_waveOutGetVolume")
 #else
 #pragma comment(linker, "/EXPORT:waveOutGetVolume=_ASM_waveOutGetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutMessage=ASM_waveOutMessage")
 #else
 #pragma comment(linker, "/EXPORT:waveOutMessage=_ASM_waveOutMessage@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutOpen=ASM_waveOutOpen")
 #else
 #pragma comment(linker, "/EXPORT:waveOutOpen=_ASM_waveOutOpen@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutPause=ASM_waveOutPause")
 #else
 #pragma comment(linker, "/EXPORT:waveOutPause=_ASM_waveOutPause@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutPrepareHeader=ASM_waveOutPrepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:waveOutPrepareHeader=_ASM_waveOutPrepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutReset=ASM_waveOutReset")
 #else
 #pragma comment(linker, "/EXPORT:waveOutReset=_ASM_waveOutReset@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutRestart=ASM_waveOutRestart")
 #else
 #pragma comment(linker, "/EXPORT:waveOutRestart=_ASM_waveOutRestart@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutSetPitch=ASM_waveOutSetPitch")
 #else
 #pragma comment(linker, "/EXPORT:waveOutSetPitch=_ASM_waveOutSetPitch@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutSetPlaybackRate=ASM_waveOutSetPlaybackRate")
 #else
 #pragma comment(linker, "/EXPORT:waveOutSetPlaybackRate=_ASM_waveOutSetPlaybackRate@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutSetVolume=ASM_waveOutSetVolume")
 #else
 #pragma comment(linker, "/EXPORT:waveOutSetVolume=_ASM_waveOutSetVolume@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutUnprepareHeader=ASM_waveOutUnprepareHeader")
 #else
 #pragma comment(linker, "/EXPORT:waveOutUnprepareHeader=_ASM_waveOutUnprepareHeader@8")
 #endif
-#if __X64_BUILD__
+#if AHEAD_LIB_DOT_NET_X64_BUILD
 #pragma comment(linker, "/EXPORT:waveOutWrite=ASM_waveOutWrite")
 #else
 #pragma comment(linker, "/EXPORT:waveOutWrite=_ASM_waveOutWrite@8")
 #endif
 
 // bind native dll first
-extern void GetOrignalLibraryPath(TCHAR* bufferPtr, int bufferLength, const TCHAR* libName);
+extern void GetOriginalLibraryPath(TCHAR* bufferPtr, int bufferLength, const TCHAR* libName);
 
-void __CheckedLoad()
+void CheckedLoad()
 {
     TCHAR szPath[MAX_PATH];
 
-    GetOrignalLibraryPath(szPath, MAX_PATH, TEXT("winmm.dll"));
+    GetOriginalLibraryPath(szPath, MAX_PATH, TEXT("winmm.dll"));
 
     // if your dll is not in system path
     // please reset szPath here
@@ -1313,192 +1313,192 @@ void __CheckedLoad()
     {
         TCHAR szMessage[MAX_PATH];
         wsprintf(szMessage, TEXT("Failed load dll from:%s"), szPath);
-        ShowMessageBox(0, szMessage, TEXT("AHeadLib.Net Error"), 0);
+        AHEAD_LIB_SHOW_MESSAGE_BOX(0, szMessage, TEXT("AHeadLib.Net Error"), 0);
         
         ExitProcess(1);
         return;
     }
 
-    CloseDriverPtr = __CheckedGetFunction(module, "CloseDriver");
-    DefDriverProcPtr = __CheckedGetFunction(module, "DefDriverProc");
-    DriverCallbackPtr = __CheckedGetFunction(module, "DriverCallback");
-    DrvGetModuleHandlePtr = __CheckedGetFunction(module, "DrvGetModuleHandle");
-    GetDriverModuleHandlePtr = __CheckedGetFunction(module, "GetDriverModuleHandle");
-    OpenDriverPtr = __CheckedGetFunction(module, "OpenDriver");
-    PlaySoundPtr = __CheckedGetFunction(module, "PlaySound");
-    PlaySoundAPtr = __CheckedGetFunction(module, "PlaySoundA");
-    PlaySoundWPtr = __CheckedGetFunction(module, "PlaySoundW");
-    SendDriverMessagePtr = __CheckedGetFunction(module, "SendDriverMessage");
-    WOWAppExitPtr = __CheckedGetFunction(module, "WOWAppExit");
-    auxGetDevCapsAPtr = __CheckedGetFunction(module, "auxGetDevCapsA");
-    auxGetDevCapsWPtr = __CheckedGetFunction(module, "auxGetDevCapsW");
-    auxGetNumDevsPtr = __CheckedGetFunction(module, "auxGetNumDevs");
-    auxGetVolumePtr = __CheckedGetFunction(module, "auxGetVolume");
-    auxOutMessagePtr = __CheckedGetFunction(module, "auxOutMessage");
-    auxSetVolumePtr = __CheckedGetFunction(module, "auxSetVolume");
-    joyConfigChangedPtr = __CheckedGetFunction(module, "joyConfigChanged");
-    joyGetDevCapsAPtr = __CheckedGetFunction(module, "joyGetDevCapsA");
-    joyGetDevCapsWPtr = __CheckedGetFunction(module, "joyGetDevCapsW");
-    joyGetNumDevsPtr = __CheckedGetFunction(module, "joyGetNumDevs");
-    joyGetPosPtr = __CheckedGetFunction(module, "joyGetPos");
-    joyGetPosExPtr = __CheckedGetFunction(module, "joyGetPosEx");
-    joyGetThresholdPtr = __CheckedGetFunction(module, "joyGetThreshold");
-    joyReleaseCapturePtr = __CheckedGetFunction(module, "joyReleaseCapture");
-    joySetCapturePtr = __CheckedGetFunction(module, "joySetCapture");
-    joySetThresholdPtr = __CheckedGetFunction(module, "joySetThreshold");
-    mciDriverNotifyPtr = __CheckedGetFunction(module, "mciDriverNotify");
-    mciDriverYieldPtr = __CheckedGetFunction(module, "mciDriverYield");
-    mciExecutePtr = __CheckedGetFunction(module, "mciExecute");
-    mciFreeCommandResourcePtr = __CheckedGetFunction(module, "mciFreeCommandResource");
-    mciGetCreatorTaskPtr = __CheckedGetFunction(module, "mciGetCreatorTask");
-    mciGetDeviceIDAPtr = __CheckedGetFunction(module, "mciGetDeviceIDA");
-    mciGetDeviceIDFromElementIDAPtr = __CheckedGetFunction(module, "mciGetDeviceIDFromElementIDA");
-    mciGetDeviceIDFromElementIDWPtr = __CheckedGetFunction(module, "mciGetDeviceIDFromElementIDW");
-    mciGetDeviceIDWPtr = __CheckedGetFunction(module, "mciGetDeviceIDW");
-    mciGetDriverDataPtr = __CheckedGetFunction(module, "mciGetDriverData");
-    mciGetErrorStringAPtr = __CheckedGetFunction(module, "mciGetErrorStringA");
-    mciGetErrorStringWPtr = __CheckedGetFunction(module, "mciGetErrorStringW");
-    mciGetYieldProcPtr = __CheckedGetFunction(module, "mciGetYieldProc");
-    mciLoadCommandResourcePtr = __CheckedGetFunction(module, "mciLoadCommandResource");
-    mciSendCommandAPtr = __CheckedGetFunction(module, "mciSendCommandA");
-    mciSendCommandWPtr = __CheckedGetFunction(module, "mciSendCommandW");
-    mciSendStringAPtr = __CheckedGetFunction(module, "mciSendStringA");
-    mciSendStringWPtr = __CheckedGetFunction(module, "mciSendStringW");
-    mciSetDriverDataPtr = __CheckedGetFunction(module, "mciSetDriverData");
-    mciSetYieldProcPtr = __CheckedGetFunction(module, "mciSetYieldProc");
-    midiConnectPtr = __CheckedGetFunction(module, "midiConnect");
-    midiDisconnectPtr = __CheckedGetFunction(module, "midiDisconnect");
-    midiInAddBufferPtr = __CheckedGetFunction(module, "midiInAddBuffer");
-    midiInClosePtr = __CheckedGetFunction(module, "midiInClose");
-    midiInGetDevCapsAPtr = __CheckedGetFunction(module, "midiInGetDevCapsA");
-    midiInGetDevCapsWPtr = __CheckedGetFunction(module, "midiInGetDevCapsW");
-    midiInGetErrorTextAPtr = __CheckedGetFunction(module, "midiInGetErrorTextA");
-    midiInGetErrorTextWPtr = __CheckedGetFunction(module, "midiInGetErrorTextW");
-    midiInGetIDPtr = __CheckedGetFunction(module, "midiInGetID");
-    midiInGetNumDevsPtr = __CheckedGetFunction(module, "midiInGetNumDevs");
-    midiInMessagePtr = __CheckedGetFunction(module, "midiInMessage");
-    midiInOpenPtr = __CheckedGetFunction(module, "midiInOpen");
-    midiInPrepareHeaderPtr = __CheckedGetFunction(module, "midiInPrepareHeader");
-    midiInResetPtr = __CheckedGetFunction(module, "midiInReset");
-    midiInStartPtr = __CheckedGetFunction(module, "midiInStart");
-    midiInStopPtr = __CheckedGetFunction(module, "midiInStop");
-    midiInUnprepareHeaderPtr = __CheckedGetFunction(module, "midiInUnprepareHeader");
-    midiOutCacheDrumPatchesPtr = __CheckedGetFunction(module, "midiOutCacheDrumPatches");
-    midiOutCachePatchesPtr = __CheckedGetFunction(module, "midiOutCachePatches");
-    midiOutClosePtr = __CheckedGetFunction(module, "midiOutClose");
-    midiOutGetDevCapsAPtr = __CheckedGetFunction(module, "midiOutGetDevCapsA");
-    midiOutGetDevCapsWPtr = __CheckedGetFunction(module, "midiOutGetDevCapsW");
-    midiOutGetErrorTextAPtr = __CheckedGetFunction(module, "midiOutGetErrorTextA");
-    midiOutGetErrorTextWPtr = __CheckedGetFunction(module, "midiOutGetErrorTextW");
-    midiOutGetIDPtr = __CheckedGetFunction(module, "midiOutGetID");
-    midiOutGetNumDevsPtr = __CheckedGetFunction(module, "midiOutGetNumDevs");
-    midiOutGetVolumePtr = __CheckedGetFunction(module, "midiOutGetVolume");
-    midiOutLongMsgPtr = __CheckedGetFunction(module, "midiOutLongMsg");
-    midiOutMessagePtr = __CheckedGetFunction(module, "midiOutMessage");
-    midiOutOpenPtr = __CheckedGetFunction(module, "midiOutOpen");
-    midiOutPrepareHeaderPtr = __CheckedGetFunction(module, "midiOutPrepareHeader");
-    midiOutResetPtr = __CheckedGetFunction(module, "midiOutReset");
-    midiOutSetVolumePtr = __CheckedGetFunction(module, "midiOutSetVolume");
-    midiOutShortMsgPtr = __CheckedGetFunction(module, "midiOutShortMsg");
-    midiOutUnprepareHeaderPtr = __CheckedGetFunction(module, "midiOutUnprepareHeader");
-    midiStreamClosePtr = __CheckedGetFunction(module, "midiStreamClose");
-    midiStreamOpenPtr = __CheckedGetFunction(module, "midiStreamOpen");
-    midiStreamOutPtr = __CheckedGetFunction(module, "midiStreamOut");
-    midiStreamPausePtr = __CheckedGetFunction(module, "midiStreamPause");
-    midiStreamPositionPtr = __CheckedGetFunction(module, "midiStreamPosition");
-    midiStreamPropertyPtr = __CheckedGetFunction(module, "midiStreamProperty");
-    midiStreamRestartPtr = __CheckedGetFunction(module, "midiStreamRestart");
-    midiStreamStopPtr = __CheckedGetFunction(module, "midiStreamStop");
-    mixerClosePtr = __CheckedGetFunction(module, "mixerClose");
-    mixerGetControlDetailsAPtr = __CheckedGetFunction(module, "mixerGetControlDetailsA");
-    mixerGetControlDetailsWPtr = __CheckedGetFunction(module, "mixerGetControlDetailsW");
-    mixerGetDevCapsAPtr = __CheckedGetFunction(module, "mixerGetDevCapsA");
-    mixerGetDevCapsWPtr = __CheckedGetFunction(module, "mixerGetDevCapsW");
-    mixerGetIDPtr = __CheckedGetFunction(module, "mixerGetID");
-    mixerGetLineControlsAPtr = __CheckedGetFunction(module, "mixerGetLineControlsA");
-    mixerGetLineControlsWPtr = __CheckedGetFunction(module, "mixerGetLineControlsW");
-    mixerGetLineInfoAPtr = __CheckedGetFunction(module, "mixerGetLineInfoA");
-    mixerGetLineInfoWPtr = __CheckedGetFunction(module, "mixerGetLineInfoW");
-    mixerGetNumDevsPtr = __CheckedGetFunction(module, "mixerGetNumDevs");
-    mixerMessagePtr = __CheckedGetFunction(module, "mixerMessage");
-    mixerOpenPtr = __CheckedGetFunction(module, "mixerOpen");
-    mixerSetControlDetailsPtr = __CheckedGetFunction(module, "mixerSetControlDetails");
-    mmDrvInstallPtr = __CheckedGetFunction(module, "mmDrvInstall");
-    mmGetCurrentTaskPtr = __CheckedGetFunction(module, "mmGetCurrentTask");
-    mmTaskBlockPtr = __CheckedGetFunction(module, "mmTaskBlock");
-    mmTaskCreatePtr = __CheckedGetFunction(module, "mmTaskCreate");
-    mmTaskSignalPtr = __CheckedGetFunction(module, "mmTaskSignal");
-    mmTaskYieldPtr = __CheckedGetFunction(module, "mmTaskYield");
-    mmioAdvancePtr = __CheckedGetFunction(module, "mmioAdvance");
-    mmioAscendPtr = __CheckedGetFunction(module, "mmioAscend");
-    mmioClosePtr = __CheckedGetFunction(module, "mmioClose");
-    mmioCreateChunkPtr = __CheckedGetFunction(module, "mmioCreateChunk");
-    mmioDescendPtr = __CheckedGetFunction(module, "mmioDescend");
-    mmioFlushPtr = __CheckedGetFunction(module, "mmioFlush");
-    mmioGetInfoPtr = __CheckedGetFunction(module, "mmioGetInfo");
-    mmioInstallIOProcAPtr = __CheckedGetFunction(module, "mmioInstallIOProcA");
-    mmioInstallIOProcWPtr = __CheckedGetFunction(module, "mmioInstallIOProcW");
-    mmioOpenAPtr = __CheckedGetFunction(module, "mmioOpenA");
-    mmioOpenWPtr = __CheckedGetFunction(module, "mmioOpenW");
-    mmioReadPtr = __CheckedGetFunction(module, "mmioRead");
-    mmioRenameAPtr = __CheckedGetFunction(module, "mmioRenameA");
-    mmioRenameWPtr = __CheckedGetFunction(module, "mmioRenameW");
-    mmioSeekPtr = __CheckedGetFunction(module, "mmioSeek");
-    mmioSendMessagePtr = __CheckedGetFunction(module, "mmioSendMessage");
-    mmioSetBufferPtr = __CheckedGetFunction(module, "mmioSetBuffer");
-    mmioSetInfoPtr = __CheckedGetFunction(module, "mmioSetInfo");
-    mmioStringToFOURCCAPtr = __CheckedGetFunction(module, "mmioStringToFOURCCA");
-    mmioStringToFOURCCWPtr = __CheckedGetFunction(module, "mmioStringToFOURCCW");
-    mmioWritePtr = __CheckedGetFunction(module, "mmioWrite");
-    mmsystemGetVersionPtr = __CheckedGetFunction(module, "mmsystemGetVersion");
-    sndPlaySoundAPtr = __CheckedGetFunction(module, "sndPlaySoundA");
-    sndPlaySoundWPtr = __CheckedGetFunction(module, "sndPlaySoundW");
-    timeBeginPeriodPtr = __CheckedGetFunction(module, "timeBeginPeriod");
-    timeEndPeriodPtr = __CheckedGetFunction(module, "timeEndPeriod");
-    timeGetDevCapsPtr = __CheckedGetFunction(module, "timeGetDevCaps");
-    timeGetSystemTimePtr = __CheckedGetFunction(module, "timeGetSystemTime");
-    timeGetTimePtr = __CheckedGetFunction(module, "timeGetTime");
-    timeKillEventPtr = __CheckedGetFunction(module, "timeKillEvent");
-    timeSetEventPtr = __CheckedGetFunction(module, "timeSetEvent");
-    waveInAddBufferPtr = __CheckedGetFunction(module, "waveInAddBuffer");
-    waveInClosePtr = __CheckedGetFunction(module, "waveInClose");
-    waveInGetDevCapsAPtr = __CheckedGetFunction(module, "waveInGetDevCapsA");
-    waveInGetDevCapsWPtr = __CheckedGetFunction(module, "waveInGetDevCapsW");
-    waveInGetErrorTextAPtr = __CheckedGetFunction(module, "waveInGetErrorTextA");
-    waveInGetErrorTextWPtr = __CheckedGetFunction(module, "waveInGetErrorTextW");
-    waveInGetIDPtr = __CheckedGetFunction(module, "waveInGetID");
-    waveInGetNumDevsPtr = __CheckedGetFunction(module, "waveInGetNumDevs");
-    waveInGetPositionPtr = __CheckedGetFunction(module, "waveInGetPosition");
-    waveInMessagePtr = __CheckedGetFunction(module, "waveInMessage");
-    waveInOpenPtr = __CheckedGetFunction(module, "waveInOpen");
-    waveInPrepareHeaderPtr = __CheckedGetFunction(module, "waveInPrepareHeader");
-    waveInResetPtr = __CheckedGetFunction(module, "waveInReset");
-    waveInStartPtr = __CheckedGetFunction(module, "waveInStart");
-    waveInStopPtr = __CheckedGetFunction(module, "waveInStop");
-    waveInUnprepareHeaderPtr = __CheckedGetFunction(module, "waveInUnprepareHeader");
-    waveOutBreakLoopPtr = __CheckedGetFunction(module, "waveOutBreakLoop");
-    waveOutClosePtr = __CheckedGetFunction(module, "waveOutClose");
-    waveOutGetDevCapsAPtr = __CheckedGetFunction(module, "waveOutGetDevCapsA");
-    waveOutGetDevCapsWPtr = __CheckedGetFunction(module, "waveOutGetDevCapsW");
-    waveOutGetErrorTextAPtr = __CheckedGetFunction(module, "waveOutGetErrorTextA");
-    waveOutGetErrorTextWPtr = __CheckedGetFunction(module, "waveOutGetErrorTextW");
-    waveOutGetIDPtr = __CheckedGetFunction(module, "waveOutGetID");
-    waveOutGetNumDevsPtr = __CheckedGetFunction(module, "waveOutGetNumDevs");
-    waveOutGetPitchPtr = __CheckedGetFunction(module, "waveOutGetPitch");
-    waveOutGetPlaybackRatePtr = __CheckedGetFunction(module, "waveOutGetPlaybackRate");
-    waveOutGetPositionPtr = __CheckedGetFunction(module, "waveOutGetPosition");
-    waveOutGetVolumePtr = __CheckedGetFunction(module, "waveOutGetVolume");
-    waveOutMessagePtr = __CheckedGetFunction(module, "waveOutMessage");
-    waveOutOpenPtr = __CheckedGetFunction(module, "waveOutOpen");
-    waveOutPausePtr = __CheckedGetFunction(module, "waveOutPause");
-    waveOutPrepareHeaderPtr = __CheckedGetFunction(module, "waveOutPrepareHeader");
-    waveOutResetPtr = __CheckedGetFunction(module, "waveOutReset");
-    waveOutRestartPtr = __CheckedGetFunction(module, "waveOutRestart");
-    waveOutSetPitchPtr = __CheckedGetFunction(module, "waveOutSetPitch");
-    waveOutSetPlaybackRatePtr = __CheckedGetFunction(module, "waveOutSetPlaybackRate");
-    waveOutSetVolumePtr = __CheckedGetFunction(module, "waveOutSetVolume");
-    waveOutUnprepareHeaderPtr = __CheckedGetFunction(module, "waveOutUnprepareHeader");
-    waveOutWritePtr = __CheckedGetFunction(module, "waveOutWrite");
+    CloseDriverPtr = CheckedGetFunction(module, "CloseDriver");
+    DefDriverProcPtr = CheckedGetFunction(module, "DefDriverProc");
+    DriverCallbackPtr = CheckedGetFunction(module, "DriverCallback");
+    DrvGetModuleHandlePtr = CheckedGetFunction(module, "DrvGetModuleHandle");
+    GetDriverModuleHandlePtr = CheckedGetFunction(module, "GetDriverModuleHandle");
+    OpenDriverPtr = CheckedGetFunction(module, "OpenDriver");
+    PlaySoundPtr = CheckedGetFunction(module, "PlaySound");
+    PlaySoundAPtr = CheckedGetFunction(module, "PlaySoundA");
+    PlaySoundWPtr = CheckedGetFunction(module, "PlaySoundW");
+    SendDriverMessagePtr = CheckedGetFunction(module, "SendDriverMessage");
+    WOWAppExitPtr = CheckedGetFunction(module, "WOWAppExit");
+    auxGetDevCapsAPtr = CheckedGetFunction(module, "auxGetDevCapsA");
+    auxGetDevCapsWPtr = CheckedGetFunction(module, "auxGetDevCapsW");
+    auxGetNumDevsPtr = CheckedGetFunction(module, "auxGetNumDevs");
+    auxGetVolumePtr = CheckedGetFunction(module, "auxGetVolume");
+    auxOutMessagePtr = CheckedGetFunction(module, "auxOutMessage");
+    auxSetVolumePtr = CheckedGetFunction(module, "auxSetVolume");
+    joyConfigChangedPtr = CheckedGetFunction(module, "joyConfigChanged");
+    joyGetDevCapsAPtr = CheckedGetFunction(module, "joyGetDevCapsA");
+    joyGetDevCapsWPtr = CheckedGetFunction(module, "joyGetDevCapsW");
+    joyGetNumDevsPtr = CheckedGetFunction(module, "joyGetNumDevs");
+    joyGetPosPtr = CheckedGetFunction(module, "joyGetPos");
+    joyGetPosExPtr = CheckedGetFunction(module, "joyGetPosEx");
+    joyGetThresholdPtr = CheckedGetFunction(module, "joyGetThreshold");
+    joyReleaseCapturePtr = CheckedGetFunction(module, "joyReleaseCapture");
+    joySetCapturePtr = CheckedGetFunction(module, "joySetCapture");
+    joySetThresholdPtr = CheckedGetFunction(module, "joySetThreshold");
+    mciDriverNotifyPtr = CheckedGetFunction(module, "mciDriverNotify");
+    mciDriverYieldPtr = CheckedGetFunction(module, "mciDriverYield");
+    mciExecutePtr = CheckedGetFunction(module, "mciExecute");
+    mciFreeCommandResourcePtr = CheckedGetFunction(module, "mciFreeCommandResource");
+    mciGetCreatorTaskPtr = CheckedGetFunction(module, "mciGetCreatorTask");
+    mciGetDeviceIDAPtr = CheckedGetFunction(module, "mciGetDeviceIDA");
+    mciGetDeviceIDFromElementIDAPtr = CheckedGetFunction(module, "mciGetDeviceIDFromElementIDA");
+    mciGetDeviceIDFromElementIDWPtr = CheckedGetFunction(module, "mciGetDeviceIDFromElementIDW");
+    mciGetDeviceIDWPtr = CheckedGetFunction(module, "mciGetDeviceIDW");
+    mciGetDriverDataPtr = CheckedGetFunction(module, "mciGetDriverData");
+    mciGetErrorStringAPtr = CheckedGetFunction(module, "mciGetErrorStringA");
+    mciGetErrorStringWPtr = CheckedGetFunction(module, "mciGetErrorStringW");
+    mciGetYieldProcPtr = CheckedGetFunction(module, "mciGetYieldProc");
+    mciLoadCommandResourcePtr = CheckedGetFunction(module, "mciLoadCommandResource");
+    mciSendCommandAPtr = CheckedGetFunction(module, "mciSendCommandA");
+    mciSendCommandWPtr = CheckedGetFunction(module, "mciSendCommandW");
+    mciSendStringAPtr = CheckedGetFunction(module, "mciSendStringA");
+    mciSendStringWPtr = CheckedGetFunction(module, "mciSendStringW");
+    mciSetDriverDataPtr = CheckedGetFunction(module, "mciSetDriverData");
+    mciSetYieldProcPtr = CheckedGetFunction(module, "mciSetYieldProc");
+    midiConnectPtr = CheckedGetFunction(module, "midiConnect");
+    midiDisconnectPtr = CheckedGetFunction(module, "midiDisconnect");
+    midiInAddBufferPtr = CheckedGetFunction(module, "midiInAddBuffer");
+    midiInClosePtr = CheckedGetFunction(module, "midiInClose");
+    midiInGetDevCapsAPtr = CheckedGetFunction(module, "midiInGetDevCapsA");
+    midiInGetDevCapsWPtr = CheckedGetFunction(module, "midiInGetDevCapsW");
+    midiInGetErrorTextAPtr = CheckedGetFunction(module, "midiInGetErrorTextA");
+    midiInGetErrorTextWPtr = CheckedGetFunction(module, "midiInGetErrorTextW");
+    midiInGetIDPtr = CheckedGetFunction(module, "midiInGetID");
+    midiInGetNumDevsPtr = CheckedGetFunction(module, "midiInGetNumDevs");
+    midiInMessagePtr = CheckedGetFunction(module, "midiInMessage");
+    midiInOpenPtr = CheckedGetFunction(module, "midiInOpen");
+    midiInPrepareHeaderPtr = CheckedGetFunction(module, "midiInPrepareHeader");
+    midiInResetPtr = CheckedGetFunction(module, "midiInReset");
+    midiInStartPtr = CheckedGetFunction(module, "midiInStart");
+    midiInStopPtr = CheckedGetFunction(module, "midiInStop");
+    midiInUnprepareHeaderPtr = CheckedGetFunction(module, "midiInUnprepareHeader");
+    midiOutCacheDrumPatchesPtr = CheckedGetFunction(module, "midiOutCacheDrumPatches");
+    midiOutCachePatchesPtr = CheckedGetFunction(module, "midiOutCachePatches");
+    midiOutClosePtr = CheckedGetFunction(module, "midiOutClose");
+    midiOutGetDevCapsAPtr = CheckedGetFunction(module, "midiOutGetDevCapsA");
+    midiOutGetDevCapsWPtr = CheckedGetFunction(module, "midiOutGetDevCapsW");
+    midiOutGetErrorTextAPtr = CheckedGetFunction(module, "midiOutGetErrorTextA");
+    midiOutGetErrorTextWPtr = CheckedGetFunction(module, "midiOutGetErrorTextW");
+    midiOutGetIDPtr = CheckedGetFunction(module, "midiOutGetID");
+    midiOutGetNumDevsPtr = CheckedGetFunction(module, "midiOutGetNumDevs");
+    midiOutGetVolumePtr = CheckedGetFunction(module, "midiOutGetVolume");
+    midiOutLongMsgPtr = CheckedGetFunction(module, "midiOutLongMsg");
+    midiOutMessagePtr = CheckedGetFunction(module, "midiOutMessage");
+    midiOutOpenPtr = CheckedGetFunction(module, "midiOutOpen");
+    midiOutPrepareHeaderPtr = CheckedGetFunction(module, "midiOutPrepareHeader");
+    midiOutResetPtr = CheckedGetFunction(module, "midiOutReset");
+    midiOutSetVolumePtr = CheckedGetFunction(module, "midiOutSetVolume");
+    midiOutShortMsgPtr = CheckedGetFunction(module, "midiOutShortMsg");
+    midiOutUnprepareHeaderPtr = CheckedGetFunction(module, "midiOutUnprepareHeader");
+    midiStreamClosePtr = CheckedGetFunction(module, "midiStreamClose");
+    midiStreamOpenPtr = CheckedGetFunction(module, "midiStreamOpen");
+    midiStreamOutPtr = CheckedGetFunction(module, "midiStreamOut");
+    midiStreamPausePtr = CheckedGetFunction(module, "midiStreamPause");
+    midiStreamPositionPtr = CheckedGetFunction(module, "midiStreamPosition");
+    midiStreamPropertyPtr = CheckedGetFunction(module, "midiStreamProperty");
+    midiStreamRestartPtr = CheckedGetFunction(module, "midiStreamRestart");
+    midiStreamStopPtr = CheckedGetFunction(module, "midiStreamStop");
+    mixerClosePtr = CheckedGetFunction(module, "mixerClose");
+    mixerGetControlDetailsAPtr = CheckedGetFunction(module, "mixerGetControlDetailsA");
+    mixerGetControlDetailsWPtr = CheckedGetFunction(module, "mixerGetControlDetailsW");
+    mixerGetDevCapsAPtr = CheckedGetFunction(module, "mixerGetDevCapsA");
+    mixerGetDevCapsWPtr = CheckedGetFunction(module, "mixerGetDevCapsW");
+    mixerGetIDPtr = CheckedGetFunction(module, "mixerGetID");
+    mixerGetLineControlsAPtr = CheckedGetFunction(module, "mixerGetLineControlsA");
+    mixerGetLineControlsWPtr = CheckedGetFunction(module, "mixerGetLineControlsW");
+    mixerGetLineInfoAPtr = CheckedGetFunction(module, "mixerGetLineInfoA");
+    mixerGetLineInfoWPtr = CheckedGetFunction(module, "mixerGetLineInfoW");
+    mixerGetNumDevsPtr = CheckedGetFunction(module, "mixerGetNumDevs");
+    mixerMessagePtr = CheckedGetFunction(module, "mixerMessage");
+    mixerOpenPtr = CheckedGetFunction(module, "mixerOpen");
+    mixerSetControlDetailsPtr = CheckedGetFunction(module, "mixerSetControlDetails");
+    mmDrvInstallPtr = CheckedGetFunction(module, "mmDrvInstall");
+    mmGetCurrentTaskPtr = CheckedGetFunction(module, "mmGetCurrentTask");
+    mmTaskBlockPtr = CheckedGetFunction(module, "mmTaskBlock");
+    mmTaskCreatePtr = CheckedGetFunction(module, "mmTaskCreate");
+    mmTaskSignalPtr = CheckedGetFunction(module, "mmTaskSignal");
+    mmTaskYieldPtr = CheckedGetFunction(module, "mmTaskYield");
+    mmioAdvancePtr = CheckedGetFunction(module, "mmioAdvance");
+    mmioAscendPtr = CheckedGetFunction(module, "mmioAscend");
+    mmioClosePtr = CheckedGetFunction(module, "mmioClose");
+    mmioCreateChunkPtr = CheckedGetFunction(module, "mmioCreateChunk");
+    mmioDescendPtr = CheckedGetFunction(module, "mmioDescend");
+    mmioFlushPtr = CheckedGetFunction(module, "mmioFlush");
+    mmioGetInfoPtr = CheckedGetFunction(module, "mmioGetInfo");
+    mmioInstallIOProcAPtr = CheckedGetFunction(module, "mmioInstallIOProcA");
+    mmioInstallIOProcWPtr = CheckedGetFunction(module, "mmioInstallIOProcW");
+    mmioOpenAPtr = CheckedGetFunction(module, "mmioOpenA");
+    mmioOpenWPtr = CheckedGetFunction(module, "mmioOpenW");
+    mmioReadPtr = CheckedGetFunction(module, "mmioRead");
+    mmioRenameAPtr = CheckedGetFunction(module, "mmioRenameA");
+    mmioRenameWPtr = CheckedGetFunction(module, "mmioRenameW");
+    mmioSeekPtr = CheckedGetFunction(module, "mmioSeek");
+    mmioSendMessagePtr = CheckedGetFunction(module, "mmioSendMessage");
+    mmioSetBufferPtr = CheckedGetFunction(module, "mmioSetBuffer");
+    mmioSetInfoPtr = CheckedGetFunction(module, "mmioSetInfo");
+    mmioStringToFOURCCAPtr = CheckedGetFunction(module, "mmioStringToFOURCCA");
+    mmioStringToFOURCCWPtr = CheckedGetFunction(module, "mmioStringToFOURCCW");
+    mmioWritePtr = CheckedGetFunction(module, "mmioWrite");
+    mmsystemGetVersionPtr = CheckedGetFunction(module, "mmsystemGetVersion");
+    sndPlaySoundAPtr = CheckedGetFunction(module, "sndPlaySoundA");
+    sndPlaySoundWPtr = CheckedGetFunction(module, "sndPlaySoundW");
+    timeBeginPeriodPtr = CheckedGetFunction(module, "timeBeginPeriod");
+    timeEndPeriodPtr = CheckedGetFunction(module, "timeEndPeriod");
+    timeGetDevCapsPtr = CheckedGetFunction(module, "timeGetDevCaps");
+    timeGetSystemTimePtr = CheckedGetFunction(module, "timeGetSystemTime");
+    timeGetTimePtr = CheckedGetFunction(module, "timeGetTime");
+    timeKillEventPtr = CheckedGetFunction(module, "timeKillEvent");
+    timeSetEventPtr = CheckedGetFunction(module, "timeSetEvent");
+    waveInAddBufferPtr = CheckedGetFunction(module, "waveInAddBuffer");
+    waveInClosePtr = CheckedGetFunction(module, "waveInClose");
+    waveInGetDevCapsAPtr = CheckedGetFunction(module, "waveInGetDevCapsA");
+    waveInGetDevCapsWPtr = CheckedGetFunction(module, "waveInGetDevCapsW");
+    waveInGetErrorTextAPtr = CheckedGetFunction(module, "waveInGetErrorTextA");
+    waveInGetErrorTextWPtr = CheckedGetFunction(module, "waveInGetErrorTextW");
+    waveInGetIDPtr = CheckedGetFunction(module, "waveInGetID");
+    waveInGetNumDevsPtr = CheckedGetFunction(module, "waveInGetNumDevs");
+    waveInGetPositionPtr = CheckedGetFunction(module, "waveInGetPosition");
+    waveInMessagePtr = CheckedGetFunction(module, "waveInMessage");
+    waveInOpenPtr = CheckedGetFunction(module, "waveInOpen");
+    waveInPrepareHeaderPtr = CheckedGetFunction(module, "waveInPrepareHeader");
+    waveInResetPtr = CheckedGetFunction(module, "waveInReset");
+    waveInStartPtr = CheckedGetFunction(module, "waveInStart");
+    waveInStopPtr = CheckedGetFunction(module, "waveInStop");
+    waveInUnprepareHeaderPtr = CheckedGetFunction(module, "waveInUnprepareHeader");
+    waveOutBreakLoopPtr = CheckedGetFunction(module, "waveOutBreakLoop");
+    waveOutClosePtr = CheckedGetFunction(module, "waveOutClose");
+    waveOutGetDevCapsAPtr = CheckedGetFunction(module, "waveOutGetDevCapsA");
+    waveOutGetDevCapsWPtr = CheckedGetFunction(module, "waveOutGetDevCapsW");
+    waveOutGetErrorTextAPtr = CheckedGetFunction(module, "waveOutGetErrorTextA");
+    waveOutGetErrorTextWPtr = CheckedGetFunction(module, "waveOutGetErrorTextW");
+    waveOutGetIDPtr = CheckedGetFunction(module, "waveOutGetID");
+    waveOutGetNumDevsPtr = CheckedGetFunction(module, "waveOutGetNumDevs");
+    waveOutGetPitchPtr = CheckedGetFunction(module, "waveOutGetPitch");
+    waveOutGetPlaybackRatePtr = CheckedGetFunction(module, "waveOutGetPlaybackRate");
+    waveOutGetPositionPtr = CheckedGetFunction(module, "waveOutGetPosition");
+    waveOutGetVolumePtr = CheckedGetFunction(module, "waveOutGetVolume");
+    waveOutMessagePtr = CheckedGetFunction(module, "waveOutMessage");
+    waveOutOpenPtr = CheckedGetFunction(module, "waveOutOpen");
+    waveOutPausePtr = CheckedGetFunction(module, "waveOutPause");
+    waveOutPrepareHeaderPtr = CheckedGetFunction(module, "waveOutPrepareHeader");
+    waveOutResetPtr = CheckedGetFunction(module, "waveOutReset");
+    waveOutRestartPtr = CheckedGetFunction(module, "waveOutRestart");
+    waveOutSetPitchPtr = CheckedGetFunction(module, "waveOutSetPitch");
+    waveOutSetPlaybackRatePtr = CheckedGetFunction(module, "waveOutSetPlaybackRate");
+    waveOutSetVolumePtr = CheckedGetFunction(module, "waveOutSetVolume");
+    waveOutUnprepareHeaderPtr = CheckedGetFunction(module, "waveOutUnprepareHeader");
+    waveOutWritePtr = CheckedGetFunction(module, "waveOutWrite");
 }
 
 

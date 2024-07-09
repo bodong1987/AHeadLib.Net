@@ -150,8 +150,8 @@
     <Content Include="Properties\Templates\Asm_x64.asm" />
     <Content Include="Properties\Templates\Asm_x86.asm" />
     <Content Include="Properties\Templates\BuiltinImplementations.cpp" />
-    <Content Include="Properties\Templates\CppHelper.c" />
-    <Content Include="Properties\Templates\DllMain.c" />
+    <ClCompile Include="Properties\Templates\CppHelper.cpp" />
+    <ClCompile Include="Properties\Templates\DllMain.cpp" />
     <Content Include="Properties\Templates\patch.txt" />
     <Content Include="Properties\Templates\resource.h" />
     <Content Include="Properties\Templates\resource.rc" />

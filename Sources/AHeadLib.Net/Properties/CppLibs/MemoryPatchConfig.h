@@ -4,11 +4,6 @@
 // Powered by bodong
 
 #pragma once
-
-#ifndef  __cplusplus
-#error "this header i created for C++ only."
-#endif
-
 #include <windows.h>
 
 #include <vector>
@@ -48,8 +43,8 @@ public:
     }
 
 private:
-    std::string GetName(const std::string& text);
-    std::vector<BYTE> GetBytes(const std::string& text);
+    static std::string GetName(const std::string& text);
+    static std::vector<BYTE> GetBytes(const std::string& text);
 private:
     std::vector<MemoryPatchConfig>  Configurations;
 };

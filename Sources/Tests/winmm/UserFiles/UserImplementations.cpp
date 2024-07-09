@@ -16,7 +16,7 @@ extern "C"
 {
     // fill original library path here
     // use absolute file path
-    void GetOrignalLibraryPath(TCHAR* bufferPtr, int bufferLength, const TCHAR* libName)
+    void GetOriginalLibraryPath(TCHAR* bufferPtr, int bufferLength, const TCHAR* libName)
     {
         assert(bufferPtr != nullptr);
         assert(libName != nullptr);
@@ -32,12 +32,12 @@ extern "C"
 
 
     // apply use custom operation
-    void __ExecuteUserCutomCodes()
+    void ExecuteUserCustomCodes()
     {
         #pragma message(MESSAGE_RAISE_LOCATION "If you want to append custom code that is executed when the Dll is loaded, please add it here.")
     }
 
-    int __CheckShouldExecuteAttachCode()
+    int ShouldExecuteAttachCode()
     {
         // this is example code, it limit execute process name:
         #if 0
