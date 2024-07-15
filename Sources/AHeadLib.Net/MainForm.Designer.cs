@@ -46,8 +46,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.xtraOpenFileDialog_OpenInputFile = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-            this.xtraFolderBrowserDialog_OpenOutputDirectory = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit_Log.Properties)).BeginInit();
@@ -239,16 +237,7 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(382, 36);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
-            // 
-            // xtraOpenFileDialog_OpenInputFile
-            // 
-            this.xtraOpenFileDialog_OpenInputFile.FileName = "xtraOpenFileDialog1";
-            this.xtraOpenFileDialog_OpenInputFile.Filter = "Dynamic Library Files (*.dll)|*.dll";
-            // 
-            // xtraFolderBrowserDialog_OpenOutputDirectory
-            // 
-            this.xtraFolderBrowserDialog_OpenOutputDirectory.DialogStyle = DevExpress.Utils.CommonDialogs.FolderBrowserDialogStyle.Wide;
-            this.xtraFolderBrowserDialog_OpenOutputDirectory.SelectedPath = "xtraFolderBrowserDialog1";
+           
             // 
             // MainFrom
             // 
@@ -294,8 +283,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog_OpenInputFile;
-        private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog_OpenOutputDirectory;
         private DevExpress.XtraEditors.HyperlinkLabelControl hyperlinkLabelControl_Project;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }

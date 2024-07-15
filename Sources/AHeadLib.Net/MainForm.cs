@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Reflection;
+using Microsoft.WindowsAPICodePack.Dialogs;
+
 // ReSharper disable InvertIf
 
 namespace AHeadLib.Net
@@ -44,22 +46,34 @@ namespace AHeadLib.Net
 
         private void buttonEdit_InputFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if(xtraOpenFileDialog_OpenInputFile.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
+            var dlg = new CommonOpenFileDialog();
+            dlg.Title = "Select your dll file";
+            dlg.IsFolderPicker = false;
+            dlg.EnsureFileExists = true;
+            dlg.EnsurePathExists = true;
+            dlg.EnsureValidNames = true;
+            dlg.Multiselect = false;
 
-            buttonEdit_InputFile.Text = xtraOpenFileDialog_OpenInputFile.FileName;
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                buttonEdit_InputFile.Text = dlg.FileName;    
+            }
         }
 
         private void buttonEdit_OutputDirectory_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if(xtraFolderBrowserDialog_OpenOutputDirectory.ShowDialog() != DialogResult.OK) 
-            {
-                return;
-            }
+            var dlg = new CommonOpenFileDialog();
+            dlg.Title = "Select your export folder";
+            dlg.IsFolderPicker = true;
+            dlg.EnsureFileExists = true;
+            dlg.EnsurePathExists = true;
+            dlg.EnsureValidNames = true;
+            dlg.Multiselect = false;
 
-            buttonEdit_OutputDirectory.Text = xtraFolderBrowserDialog_OpenOutputDirectory.SelectedPath;
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                buttonEdit_OutputDirectory.Text = dlg.FileName;    
+            }
         }
 
         private void RefreshGenerateButtonState()
